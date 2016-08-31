@@ -1,6 +1,6 @@
 {
   "name": "psydux",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A Psychic JavaScript framework that let's you build applications without HTML.",
   "main": "psydux.js",
   "scripts": {
