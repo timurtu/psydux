@@ -1,0 +1,18 @@
+{
+  "name": "psydux",
+  "version": "0.0.1",
+  "description": "A Psychic JavaScript framework that let's you build applications without HTML.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "psydux",
+    "psychic"
+  ],
+  "author": "Timur Uzel <timurt.uzel@gmail.com> (https://github.com/timurtu)",
+  "license": "ISC",
+  "dependencies": {
+    "domali": "^2.1.1"
+  }
+}
