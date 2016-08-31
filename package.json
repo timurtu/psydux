@@ -11,8 +11,5 @@
     "psychic"
   ],
   "author": "Timur Uzel <timurt.uzel@gmail.com> (https://github.com/timurtu)",
-  "license": "ISC",
-  "dependencies": {
-    "domali": "^2.1.1"
-  }
+  "license": "ISC"
 }
