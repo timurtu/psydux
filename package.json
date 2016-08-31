@@ -1,15 +1,24 @@
 {
   "name": "psydux",
-  "version": "0.0.6",
-  "description": "A Psychic JavaScript framework that let's you build applications without HTML.",
+  "version": "1.0.0",
+  "description": "A Psychic JavaScript framework for building UIs without HTML.",
   "main": "psydux.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timurtu/psydux.git"
+  },
   "keywords": [
     "psydux",
-    "psychic"
+    "psychic",
+    "framework"
   ],
   "author": "Timur Uzel <timurt.uzel@gmail.com> (https://github.com/timurtu)",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/timurtu/psydux/issues"
+  },
+  "homepage": "https://github.com/timurtu/psydux#readme"
 }
