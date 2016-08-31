@@ -7,12 +7,11 @@ const psy = {}
 psy.el = function (tag, attributes, callback) {
   
   const e = document.createElement(tag)
+  const returnValue = callback()
   
   for (const a in attributes) {
     e.setAttribute(a, attributes[a])
   }
-  
-  const returnValue = callback()
   
   /**
    * Switch on the returnValue to narrow down type
