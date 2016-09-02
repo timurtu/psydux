@@ -14,7 +14,7 @@ psy.el = function (tag, attributes, callback) {
   }
   
   /**
-   * Switch on the returnValue to narrow down type
+   * Switch on the typeof returnValue to narrow down type
    */
   switch (typeof returnValue) {
     
@@ -41,4 +41,4 @@ psy.el = function (tag, attributes, callback) {
   return e
 }
 
-module.exports = psy
+export default psy
