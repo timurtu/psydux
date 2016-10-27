@@ -7,34 +7,40 @@ const psy = {}
 psy.el = function (tag, attributes, callback) {
 
   const e = document.createElement(tag)
-  const returnValue = callback()
 
-  for (const a in attributes) {
-    e.setAttribute(a, attributes[a])
+  if (attributes) {
+    for (const a in attributes) {
+      e.setAttribute(a, attributes[a])
+    }
   }
 
-  /**
-   * Switch on the typeof returnValue to narrow down type
-   */
-  switch (typeof returnValue) {
+  if (callback) {
 
-    /* they returned a list of elements */
-    case 'object':
-      switch (tag) {
-        default:
-          Array.prototype.forEach.call(returnValue, element => e.appendChild(element))
-      }
-      break
+    const returnValue = callback()
 
-    /* they returned a string */
-    case 'string':
+    /**
+     * Switch on the typeof returnValue to narrow down type
+     */
+    switch (typeof returnValue) {
 
-    default:
-      /* Switch on the tag to decide how to change the node's text */
-      switch (tag) {
-        default:
-          e.appendChild(document.createTextNode(returnValue))
-      }
+      /* they returned a list of elements */
+      case 'object':
+        switch (tag) {
+          default:
+            Array.prototype.forEach.call(returnValue, element => e.appendChild(element))
+        }
+        break
+
+      /* they returned a string */
+      case 'string':
+
+      default:
+        /* Switch on the tag to decide how to change the node's text */
+        switch (tag) {
+          default:
+            e.appendChild(document.createTextNode(returnValue))
+        }
+    }
   }
 
   document.body.appendChild(e)
