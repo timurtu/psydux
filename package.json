@@ -3,6 +3,7 @@
   "version": "1.0.4",
   "description": "A Psychic JavaScript framework for building UIs without HTML.",
   "main": "dist/psydux.js",
+  "files": ["dist/psydux.js"],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
