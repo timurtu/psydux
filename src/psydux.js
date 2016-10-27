@@ -3,4 +3,4 @@
  */
 import el from './el'
 
-export default { el }
+export { el }
