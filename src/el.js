@@ -1,4 +1,4 @@
-const el = (tag, attributes, callback) => {
+const el = function (tag, attributes, callback) {
 
   const e = document.createElement(tag)
 
