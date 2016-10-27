@@ -3,4 +3,6 @@
  */
 import el from './el'
 
-export default { el }
+const psy = { el }
+
+export default psy
