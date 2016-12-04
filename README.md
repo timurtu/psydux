@@ -1,7 +1,18 @@
 # Psydux
 
-Psydux lets you build web applications with reusable functions.
+Join our [Gitter chat](https://gitter.im/psydux-framework/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
 
-## [Get started with the Psydux CLI](https://github.com/timurtu/psydux-cli)
+Psydux is JavaScript framework for when you're sick of HTML and want to build web applications with reusable functions.
 
-[Gitter chat](https://gitter.im/psydux-framework/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+The easiest way get started using the Psydux JavaScript framework is to install the command line interface. Install [node](https://nodejs.org) 
+first if you have not already.
+
+Open up a terminal or command prompt and enter the following
+
+```
+npm install -g psydux-cli
+```
+
+Learn more about the Psydux CLI [here](https://github.com/timurtu/psydux-cli).
+
+[Get started with Psydux](docs/getting-started.md)

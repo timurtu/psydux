@@ -1,4 +1,4 @@
-const el = function (tag, attributes, callback) {
+const el = (tag, attributes, callback) => {
 
   const e = document.createElement(tag)
 
@@ -12,11 +12,14 @@ const el = function (tag, attributes, callback) {
 
     const returnValue = callback()
 
+    /*eslint indent: ["error", 2, { "SwitchCase": 1 }]*/
     switch (typeof returnValue) {
       case 'object':
-        switch (tag) {
-          default:
-            Array.prototype.forEach.call(returnValue, element => e.appendChild(element))
+        if (tag) {
+          switch (tag) {
+            default:
+              Array.prototype.forEach.call(returnValue, element => e.appendChild(element))
+          }
         }
         break
       case 'string':
