@@ -1,10 +1,17 @@
+import cuid from 'cuid'
+import registry from './registry'
+
 const el = (tag, attributes, callback) => {
 
-  const e = document.createElement(tag)
+  const node = document.createElement(tag)
+
+  const id = cuid()
+
+  registry.set(id, node)
 
   if (attributes) {
     for (const a in attributes) {
-      e.setAttribute(a, attributes[a])
+      node.setAttribute(a, attributes[a])
     }
   }
 
@@ -14,25 +21,18 @@ const el = (tag, attributes, callback) => {
 
     /*eslint indent: ["error", 2, { "SwitchCase": 1 }]*/
     switch (typeof returnValue) {
+
       case 'object':
-        if (tag) {
-          switch (tag) {
-            default:
-              Array.prototype.forEach.call(returnValue, element => e.appendChild(element))
-          }
-        }
+        Array.isArray(returnValue) ? Array.prototype.forEach.call(returnValue, element => node.appendChild(element)) :
+          node.appendChild(returnValue)
         break
+
       case 'string':
-      default:
-        switch (tag) {
-          default:
-            e.appendChild(document.createTextNode(returnValue))
-        }
+        node.appendChild(document.createTextNode(returnValue))
+        break
     }
   }
-
-  document.body.appendChild(e)
-  return e
+  return node
 }
 
-export default el
+export default  el
