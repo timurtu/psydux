@@ -10,6 +10,12 @@ A functional JavaScript Framework for building user interfaces
 
 [Get started with the cli](https://github.com/timurtu/psydux-cli)
 
+## Install
+
+```
+npm install --save psydux
+```
+
 ## Example
 
 ```javascript
