@@ -1,5 +1,19 @@
 # Psydux
 
+A functional JavaScript Framework for building user interfaces
+
+## Functional 
+
+Declare functions that return DOM elements
+
+## Modular
+
+Share functions across applications
+
+## DRY
+
+Not one line of HTML
+
 Join our [Gitter chat](https://gitter.im/psydux-framework/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
 
 Psydux is Modern JavaScript framework for web developers who are sick of repeating themselves with markup languages and want to build web applications with reusable functions.
