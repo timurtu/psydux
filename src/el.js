@@ -1,13 +1,6 @@
-import cuid from 'cuid'
-import registry from './registry'
-
-const el = (tag, attributes, callback) => {
+export default (tag, attributes, callback) => {
 
   const node = document.createElement(tag)
-
-  const id = cuid()
-
-  registry.set(id, node)
 
   if (attributes) {
     for (const a in attributes) {
@@ -34,5 +27,3 @@ const el = (tag, attributes, callback) => {
   }
   return node
 }
-
-export default  el
