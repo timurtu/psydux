@@ -10,9 +10,23 @@ Declare functions that return DOM elements
 
 Share functions across applications
 
-## DRY
+## DRY and Reusable
 
-Not one line of HTML
+Psydux apps do not contain one line of HTML
+
+[Get started with the cli](https://github.com/timurtu/psydux-cli)
+
+## Example
+
+```javascript
+import { el } from 'psydux'
+
+const button = ({ type, text }) => el('button', { class: `btn btn-${type}` }, () => text)
+
+const btn = button({ type: 'primary', text: 'hello' })
+
+btn.onclick = () => alert('psydux')
+```
 
 Join our [Gitter chat](https://gitter.im/psydux-framework/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
 
@@ -25,6 +39,12 @@ Open up a terminal or command prompt and enter the following
 
 ```
 npm install -g psydux-cli
+```
+
+then
+
+```
+psydux my-app && cd my-app && psydux
 ```
 
 Learn more about the Psydux CLI [here](https://github.com/timurtu/psydux-cli).
