@@ -2,17 +2,11 @@
 
 A functional JavaScript Framework for building user interfaces
 
-## Functional 
+- __Functional__ - Declare functions that return DOM elements
 
-Declare functions that return DOM elements
+- __Modular__ - Share functions across applications
 
-## Modular
-
-Share functions across applications
-
-## DRY and Reusable
-
-Psydux apps do not contain one line of HTML
+- __DRY and Reusable__ - Psydux apps do not contain one line of HTML
 
 [Get started with the cli](https://github.com/timurtu/psydux-cli)
 
