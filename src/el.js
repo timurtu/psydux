@@ -25,5 +25,7 @@ export default (tag, attributes, callback) => {
         break
     }
   }
+
+  document.body.appendChild(node)
   return node
 }
