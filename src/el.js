@@ -1,3 +1,6 @@
+
+export const callbacks = []
+
 export default (tag = 'div', callback = {}, attributes = {}) => {
 
   const node = document.createElement(tag)
@@ -5,6 +8,8 @@ export default (tag = 'div', callback = {}, attributes = {}) => {
   switch (typeof callback) {
 
     case 'function': {
+
+      callbacks.push(callback)
 
       const returnValue = callback()
 
