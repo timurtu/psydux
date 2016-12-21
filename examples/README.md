@@ -1,6 +1,4 @@
-## Psydux Examples
-
-To run the example Psydux applications
+## Psydux Example Applications
 
 Clone the master psydux repository
 ```
