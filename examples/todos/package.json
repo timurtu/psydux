@@ -1,14 +1,14 @@
 {
-  "name": "hello_world",
-  "version": "1.0.0",
-  "description": "",
-  "main": "webpack.config.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "name": "todos",
+  "version": "0.0.0",
+  "description": "Psydux application",
+  "main": ".psydux/dist/bundle.js",
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "psydux"
+  },
   "devDependencies": {
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",

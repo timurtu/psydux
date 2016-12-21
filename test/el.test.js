@@ -24,7 +24,7 @@ describe('el', function () {
 
     it('Should set an id attribute', function () {
 
-      expect(el('h1', { id: 'foo' }).getAttribute('id')).to.equal('foo')
+      expect(el('h1', () => {}, { id: 'foo' }).getAttribute('id')).to.equal('foo')
     })
 
     it('Should set a few attributes', function () {
@@ -47,7 +47,7 @@ describe('el', function () {
 
       const txt = 'hey'
 
-      expect(el('h1', {}, () => txt).innerHTML).to.equal(txt)
+      expect(el('h1', () => txt, {}).innerHTML).to.equal(txt)
     })
 
     it('Should set a paragraph\'s text', function () {
