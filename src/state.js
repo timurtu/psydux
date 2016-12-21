@@ -2,6 +2,7 @@
  * Created by timur on 12/19/2016.
  */
 
+import dom from 'domali'
 import { components } from './el'
 
 const states = [{}]
@@ -14,12 +15,15 @@ function get() {
 function set(nextState) {
   states.push(nextState)
   count++
-  update(components)
+  if(components) {
+    update(components)
+  }
 }
 
 function update(components) {
-  const foo = console
-  foo.log(components)
+
+  components.forEach(comp => dom.render(comp.node))
+
 }
 
 export default {

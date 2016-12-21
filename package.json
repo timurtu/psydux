@@ -48,5 +48,7 @@
     "sinon": "^1.17.6",
     "webpack-stream": "^3.2.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "domali": "^2.1.1"
+  }
 }

@@ -16,8 +16,6 @@ exports.default = function () {
 
   var node = document.createElement(tag);
 
-  components.push({ tag: tag, callback: callback, attributes: attributes });
-
   switch (typeof callback === 'undefined' ? 'undefined' : _typeof(callback)) {
 
     case 'function':
@@ -55,5 +53,8 @@ exports.default = function () {
   }
 
   document.body.appendChild(node);
+
+  components.push({ tag: tag, callback: callback, attributes: attributes, node: node });
+
   return node;
 };

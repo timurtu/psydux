@@ -8,7 +8,6 @@ const button = ({ type, text }) => el('button', () => text, { class: `btn btn-${
 const row = (...elements) => el('div', () => elements, { class: 'row' })
 const col = (amount, display, ...elements) => el('div', () => elements, { class: `col-${display}-${amount}` })
 
-
 const todoInput = input('Add Todo')
 
 const todoForm = form(
@@ -33,15 +32,15 @@ todoForm.onsubmit = e => {
     ]
   })
 
-  console.log(state.get().todos)
+  console.log('todos', state.get().todos)
 
   todoInput.value = ''
 }
 
-const todoList = () => el('ul', () => state.get().todos.map(todo => el('li', () => todo)))
+const todoList = todos => el('ul', () => todos.map(todo => el('li', () => todo)))
 
 container(
   title('Todo List'),
   todoForm,
-  todoList()
+  todoList(state.get().todos)
 )

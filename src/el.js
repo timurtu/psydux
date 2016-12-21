@@ -4,8 +4,6 @@ export default (tag = 'div', callback = {}, attributes = {}) => {
 
   const node = document.createElement(tag)
 
-  components.push({ tag, callback, attributes })
-
   switch (typeof callback) {
 
     case 'function': {
@@ -38,5 +36,8 @@ export default (tag = 'div', callback = {}, attributes = {}) => {
   }
 
   document.body.appendChild(node)
+
+  components.push({ tag, callback, attributes, node })
+
   return node
 }
