@@ -182,6 +182,8 @@
 
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
+	var components = exports.components = [];
+
 	exports.default = function () {
 	  var tag = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
 	  var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -189,6 +191,8 @@
 
 
 	  var node = document.createElement(tag);
+
+	  components.push({ tag: tag, callback: callback, attributes: attributes });
 
 	  switch (typeof callback === 'undefined' ? 'undefined' : _typeof(callback)) {
 
@@ -232,18 +236,20 @@
 
 /***/ },
 /* 4 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	/**
-	 * Created by timur on 12/19/2016.
-	 */
 
-	var states = [{}];
+	var _el = __webpack_require__(3);
+
+	var states = [{}]; /**
+	                    * Created by timur on 12/19/2016.
+	                    */
+
 	var count = 0;
 
 	function get() {
@@ -253,6 +259,12 @@
 	function set(nextState) {
 	  states.push(nextState);
 	  count++;
+	  update(_el.components);
+	}
+
+	function update(components) {
+	  var foo = console;
+	  foo.log(components);
 	}
 
 	exports.default = {

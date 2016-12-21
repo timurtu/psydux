@@ -18,8 +18,8 @@ function set(nextState) {
 }
 
 function update(components) {
-
-  console.log(components)
+  const foo = console
+  foo.log(components)
 }
 
 export default {
