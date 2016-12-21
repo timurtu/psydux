@@ -20,6 +20,7 @@ export default (tag = 'div', callback = {}, attributes = {}) => {
 
         case 'string': {
           node.appendChild(document.createTextNode(returnValue))
+          components.push({ tag, callback, attributes, node, returnValue })
           break
         }
       }
@@ -36,8 +37,6 @@ export default (tag = 'div', callback = {}, attributes = {}) => {
   }
 
   document.body.appendChild(node)
-
-  components.push({ tag, callback, attributes, node })
 
   return node
 }

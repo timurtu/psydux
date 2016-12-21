@@ -36,6 +36,7 @@ exports.default = function () {
           case 'string':
             {
               node.appendChild(document.createTextNode(returnValue));
+              components.push({ tag: tag, callback: callback, attributes: attributes, node: node, returnValue: returnValue });
               break;
             }
         }
@@ -53,8 +54,6 @@ exports.default = function () {
   }
 
   document.body.appendChild(node);
-
-  components.push({ tag: tag, callback: callback, attributes: attributes, node: node });
 
   return node;
 };
