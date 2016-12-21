@@ -26,6 +26,7 @@ describe('state', function () {
 
     it('should set a new value', function () {
       state.set({ name: 'Timur' })
+      expect(state.get()).to.deep.equal({ name: 'Timur' })
       state.set({ name: 'Uzel' })
       expect(state.get()).to.deep.equal({ name: 'Uzel' })
     })
