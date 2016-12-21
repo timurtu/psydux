@@ -37,10 +37,10 @@ todoForm.onsubmit = e => {
   todoInput.value = ''
 }
 
-const todoList = todos => el('ul', () => todos.map(todo => el('li', () => todo)))
+const todoList = el('ul', () => state.get().todos.map(todo => el('li', () => todo)))
 
 container(
   title('Todo List'),
   todoForm,
-  todoList(state.get().todos)
+  todoList
 )

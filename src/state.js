@@ -18,19 +18,26 @@ function set(nextState) {
 }
 
 function update(components) {
-  components.forEach(({ returnValue, node }) => {
+  components.forEach(({ tag, returnValue, callback, node }) => {
 
-    switch (typeof returnValue) {
+    const nextValue = callback()
 
-      case 'object': {
-        Array.isArray(returnValue) ? Array.prototype.forEach.call(returnValue, element =>
-          node.appendChild(element)) : node.appendChild(returnValue)
-        break
-      }
+    if (returnValue !== nextValue) {
 
-      case 'string': {
-        node.appendChild(document.createTextNode(returnValue))
-        break
+      const nextNode = document.createElement(tag)
+
+      switch (typeof returnValue) {
+
+        case 'object': {
+          Array.isArray(nextValue) ? Array.prototype.forEach.call(nextValue, element =>
+            nextNode.appendChild(element)) : node.appendChild(nextValue)
+          break
+        }
+
+        case 'string': {
+          nextNode.appendChild(document.createTextNode(nextValue))
+          break
+        }
       }
     }
   })

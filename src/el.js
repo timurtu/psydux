@@ -1,5 +1,7 @@
 export const components = []
 
+let count = 0
+
 export default (tag = 'div', callback = {}, attributes = {}) => {
 
   const node = document.createElement(tag)
@@ -10,7 +12,7 @@ export default (tag = 'div', callback = {}, attributes = {}) => {
 
       const returnValue = callback()
 
-      components.push({ tag, callback, attributes, node, returnValue })
+      components.push({ tag, callback, attributes, node, returnValue, id: count })
 
       switch (typeof returnValue) {
 
@@ -38,6 +40,8 @@ export default (tag = 'div', callback = {}, attributes = {}) => {
   }
 
   document.body.appendChild(node)
+
+  count++
 
   return node
 }

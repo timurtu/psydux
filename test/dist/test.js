@@ -184,6 +184,8 @@
 
 	var components = exports.components = [];
 
+	var count = 0;
+
 	exports.default = function () {
 	  var tag = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
 	  var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -199,7 +201,7 @@
 
 	        var returnValue = callback();
 
-	        components.push({ tag: tag, callback: callback, attributes: attributes, node: node, returnValue: returnValue });
+	        components.push({ tag: tag, callback: callback, attributes: attributes, node: node, returnValue: returnValue, id: count });
 
 	        switch (typeof returnValue === 'undefined' ? 'undefined' : _typeof(returnValue)) {
 
@@ -231,6 +233,8 @@
 	  }
 
 	  document.body.appendChild(node);
+
+	  count++;
 
 	  return node;
 	};
@@ -266,25 +270,36 @@
 
 	function update(components) {
 	  components.forEach(function (_ref) {
-	    var returnValue = _ref.returnValue,
+	    var tag = _ref.tag,
+	        returnValue = _ref.returnValue,
+	        callback = _ref.callback,
 	        node = _ref.node;
 
 
-	    switch (typeof returnValue === 'undefined' ? 'undefined' : _typeof(returnValue)) {
+	    var nextValue = callback();
 
-	      case 'object':
-	        {
-	          Array.isArray(returnValue) ? Array.prototype.forEach.call(returnValue, function (element) {
-	            return node.appendChild(element);
-	          }) : node.appendChild(returnValue);
-	          break;
-	        }
+	    if (returnValue !== nextValue) {
+	      (function () {
 
-	      case 'string':
-	        {
-	          node.appendChild(document.createTextNode(returnValue));
-	          break;
+	        var nextNode = document.createElement(tag);
+
+	        switch (typeof returnValue === 'undefined' ? 'undefined' : _typeof(returnValue)) {
+
+	          case 'object':
+	            {
+	              Array.isArray(nextValue) ? Array.prototype.forEach.call(nextValue, function (element) {
+	                return nextNode.appendChild(element);
+	              }) : node.appendChild(nextValue);
+	              break;
+	            }
+
+	          case 'string':
+	            {
+	              nextNode.appendChild(document.createTextNode(nextValue));
+	              break;
+	            }
 	        }
+	      })();
 	    }
 	  });
 	}
