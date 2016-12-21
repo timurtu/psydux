@@ -1,15 +1,14 @@
-
-export const callbacks = []
+export const components = []
 
 export default (tag = 'div', callback = {}, attributes = {}) => {
 
   const node = document.createElement(tag)
 
+  components.push({ tag, callback, attributes })
+
   switch (typeof callback) {
 
     case 'function': {
-
-      callbacks.push(callback)
 
       const returnValue = callback()
 

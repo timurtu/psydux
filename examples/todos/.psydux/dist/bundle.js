@@ -123,7 +123,17 @@
 	  todoInput.value = '';
 	};
 
-	container(title('Todo List'), todoForm);
+	var todoList = function todoList() {
+	  return (0, _psydux.el)('ul', function () {
+	    return _psydux.state.get().todos.map(function (todo) {
+	      return (0, _psydux.el)('li', function () {
+	        return todo;
+	      });
+	    });
+	  });
+	};
+
+	container(title('Todo List'), todoForm, todoList());
 
 /***/ },
 /* 1 */
