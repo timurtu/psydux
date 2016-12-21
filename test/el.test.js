@@ -4,10 +4,16 @@ describe('el', function () {
 
   describe('tag', function () {
 
-    it('Should be a header', function () {
+    it('Should be a div', function() {
+
+      expect(el().outerHTML).to.equal('<div></div>')
+    })
+
+    it('Should be an h1', function() {
 
       expect(el('h1').outerHTML).to.equal('<h1></h1>')
     })
+
 
     it('Should be a paragraph', function () {
 
@@ -24,7 +30,7 @@ describe('el', function () {
 
     it('Should set an id attribute', function () {
 
-      expect(el('h1', () => {}, { id: 'foo' }).getAttribute('id')).to.equal('foo')
+      expect(el('h1', { id: 'foo' }).getAttribute('id')).to.equal('foo')
     })
 
     it('Should set a few attributes', function () {
@@ -47,25 +53,31 @@ describe('el', function () {
 
       const txt = 'hey'
 
-      expect(el('h1', () => txt, {}).innerHTML).to.equal(txt)
+      expect(el('h1', () => txt).innerHTML).to.equal(txt)
     })
 
     it('Should set a paragraph\'s text', function () {
 
       const txt = 'hello, world!'
 
-      expect(el('p', {}, () => txt).innerHTML).to.equal(txt)
+      expect(el('p', () => txt).innerHTML).to.equal(txt)
+    })
+
+    it('Should set a child element', function() {
+
+      expect(el('ul', () => el('li')).outerHTML).to.equal('<ul><li></li></ul>')
     })
 
     it('Should set a list of lis', function () {
 
       const lis = '<li></li><li></li><li></li>'
 
-      expect(el('ul', {}, () => [
+      expect(el('ul', () => [
         el('li'),
         el('li'),
         el('li')
       ]).innerHTML).to.equal(lis)
     })
+
   })
 })
