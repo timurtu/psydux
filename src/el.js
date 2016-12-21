@@ -10,6 +10,8 @@ export default (tag = 'div', callback = {}, attributes = {}) => {
 
       const returnValue = callback()
 
+      components.push({ tag, callback, attributes, node, returnValue })
+
       switch (typeof returnValue) {
 
         case 'object': {
@@ -20,7 +22,6 @@ export default (tag = 'div', callback = {}, attributes = {}) => {
 
         case 'string': {
           node.appendChild(document.createTextNode(returnValue))
-          components.push({ tag, callback, attributes, node, returnValue })
           break
         }
       }

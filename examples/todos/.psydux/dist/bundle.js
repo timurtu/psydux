@@ -205,6 +205,7 @@
 	          case 'string':
 	            {
 	              node.appendChild(document.createTextNode(returnValue));
+	              components.push({ tag: tag, callback: callback, attributes: attributes, node: node, returnValue: returnValue });
 	              break;
 	            }
 	        }
@@ -223,23 +224,24 @@
 
 	  document.body.appendChild(node);
 
-	  components.push({ tag: tag, callback: callback, attributes: attributes, node: node });
-
 	  return node;
 	};
 
 /***/ },
 /* 3 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	/**
-	 * Created by timur on 12/19/2016.
-	 */
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; /**
+	                                                                                                                                                                                                                                                                               * Created by timur on 12/19/2016.
+	                                                                                                                                                                                                                                                                               */
+
+	var _el = __webpack_require__(2);
 
 	var states = [{}];
 	var count = 0;
@@ -251,6 +253,21 @@
 	function set(nextState) {
 	  states.push(nextState);
 	  count++;
+	  update(_el.components);
+	}
+
+	function update(components) {
+	  components.forEach(function (component) {
+
+	    switch (_typeof(component.returnValue)) {
+
+	      case 'string':
+	        {
+	          component.node.appendChild(document.createTextNode(component.callback()));
+	          break;
+	        }
+	    }
+	  });
 	}
 
 	exports.default = {

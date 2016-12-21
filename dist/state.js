@@ -24,13 +24,24 @@ function set(nextState) {
 }
 
 function update(components) {
-  components.forEach(function (component) {
+  components.forEach(function (_ref) {
+    var returnValue = _ref.returnValue,
+        node = _ref.node;
 
-    switch (_typeof(component.returnValue)) {
+
+    switch (typeof returnValue === 'undefined' ? 'undefined' : _typeof(returnValue)) {
+
+      case 'object':
+        {
+          Array.isArray(returnValue) ? Array.prototype.forEach.call(returnValue, function (element) {
+            return node.appendChild(element);
+          }) : node.appendChild(returnValue);
+          break;
+        }
 
       case 'string':
         {
-          component.node.appendChild(document.createTextNode(component.callback()));
+          node.appendChild(document.createTextNode(returnValue));
           break;
         }
     }

@@ -18,16 +18,21 @@ function set(nextState) {
 }
 
 function update(components) {
-  components.forEach(component => {
+  components.forEach(({ returnValue, node }) => {
 
-    switch(typeof component.returnValue) {
+    switch (typeof returnValue) {
+
+      case 'object': {
+        Array.isArray(returnValue) ? Array.prototype.forEach.call(returnValue, element =>
+          node.appendChild(element)) : node.appendChild(returnValue)
+        break
+      }
 
       case 'string': {
-        component.node.appendChild(document.createTextNode(component.callback()))
+        node.appendChild(document.createTextNode(returnValue))
         break
       }
     }
-
   })
 }
 

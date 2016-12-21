@@ -23,6 +23,8 @@ exports.default = function () {
 
         var returnValue = callback();
 
+        components.push({ tag: tag, callback: callback, attributes: attributes, node: node, returnValue: returnValue });
+
         switch (typeof returnValue === 'undefined' ? 'undefined' : _typeof(returnValue)) {
 
           case 'object':
@@ -36,7 +38,6 @@ exports.default = function () {
           case 'string':
             {
               node.appendChild(document.createTextNode(returnValue));
-              components.push({ tag: tag, callback: callback, attributes: attributes, node: node, returnValue: returnValue });
               break;
             }
         }
