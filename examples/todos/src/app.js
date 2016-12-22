@@ -1,21 +1,20 @@
 import { el, render } from 'psydux'
-import { input, form, button } from './components/input'
-import { row, col } from './components/grid'
-import container from './components/container'
 
-
-const todoInput = input('Add Todo')
-
-const todoForm = form(
-  row(
+const input = placeholder => el('input', { placeholder, class: 'form-control' }),
+  form = (...elements) => el('form', () => elements),
+  container = (...elements) => el('div', () => elements, { class: 'container-fluid' }),
+  button = ({ type, text }) => el('button', () => text, { class: `btn btn-${type} btn-block` }),
+  row = (...elements) => el('div', () => elements, { class: 'row' }),
+  col = (amount, display, ...elements) => el('div', () => elements, { class: `col-${display}-${amount}` }),
+  title = text => el('h1', () => text),
+  listGroup = () => el('div', { class: 'list-group' }),
+  listGroupItem = item => el('a', () => item, { class: 'list-group-item' }),
+  todoInput = input('Add Todo'),
+  todoList = listGroup(),
+  todoForm = form(row(
     col(8, 'xs', todoInput),
     col(4, 'xs', button({ type: 'success', text: 'Add' }))
-  )
-)
-
-const todoList = el('div', { class: 'list-group' })
-
-const todoItem = item => el('a', () => item, { class: 'list-group-item' })
+  ))
 
 todoForm.onsubmit = e => {
   e.preventDefault()
@@ -24,26 +23,16 @@ todoForm.onsubmit = e => {
     return
   }
 
-  const todo = todoItem(todoInput.value)
+  const todo = listGroupItem(todoInput.value)
 
   todo.onclick = function () {
     this.style.textDecoration = this.style.textDecoration === 'none' ? 'line-through' : 'none'
   }
 
   todoList.unshift(todo)
-
   todoInput.value = ''
 }
 
-const title = text => el('h1', () => text)
-
-render(
-  container(
-    title('Todo list'),
-    todoForm,
-    el('hr'),
-    todoList
-  )
-)
+render(container(title('Todo list'), todoForm, el('hr'), todoList))
 
 todoInput.focus()

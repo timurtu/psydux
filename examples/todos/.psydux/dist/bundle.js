@@ -48,27 +48,68 @@
 
 	var _psydux = __webpack_require__(1);
 
-	var _input = __webpack_require__(309);
+	var input = function input(placeholder) {
+	  return (0, _psydux.el)('input', { placeholder: placeholder, class: 'form-control' });
+	},
+	    form = function form() {
+	  for (var _len = arguments.length, elements = Array(_len), _key = 0; _key < _len; _key++) {
+	    elements[_key] = arguments[_key];
+	  }
 
-	var _grid = __webpack_require__(310);
+	  return (0, _psydux.el)('form', function () {
+	    return elements;
+	  });
+	},
+	    container = function container() {
+	  for (var _len2 = arguments.length, elements = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+	    elements[_key2] = arguments[_key2];
+	  }
 
-	var _container = __webpack_require__(311);
+	  return (0, _psydux.el)('div', function () {
+	    return elements;
+	  }, { class: 'container-fluid' });
+	},
+	    button = function button(_ref) {
+	  var type = _ref.type,
+	      text = _ref.text;
+	  return (0, _psydux.el)('button', function () {
+	    return text;
+	  }, { class: 'btn btn-' + type + ' btn-block' });
+	},
+	    row = function row() {
+	  for (var _len3 = arguments.length, elements = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+	    elements[_key3] = arguments[_key3];
+	  }
 
-	var _container2 = _interopRequireDefault(_container);
+	  return (0, _psydux.el)('div', function () {
+	    return elements;
+	  }, { class: 'row' });
+	},
+	    col = function col(amount, display) {
+	  for (var _len4 = arguments.length, elements = Array(_len4 > 2 ? _len4 - 2 : 0), _key4 = 2; _key4 < _len4; _key4++) {
+	    elements[_key4 - 2] = arguments[_key4];
+	  }
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var todoInput = (0, _input.input)('Add Todo');
-
-	var todoForm = (0, _input.form)((0, _grid.row)((0, _grid.col)(8, 'xs', todoInput), (0, _grid.col)(4, 'xs', (0, _input.button)({ type: 'success', text: 'Add' }))));
-
-	var todoList = (0, _psydux.el)('div', { class: 'list-group' });
-
-	var todoItem = function todoItem(item) {
+	  return (0, _psydux.el)('div', function () {
+	    return elements;
+	  }, { class: 'col-' + display + '-' + amount });
+	},
+	    title = function title(text) {
+	  return (0, _psydux.el)('h1', function () {
+	    return text;
+	  });
+	},
+	    listGroup = function listGroup() {
+	  return (0, _psydux.el)('div', { class: 'list-group' });
+	},
+	    listGroupItem = function listGroupItem(item) {
 	  return (0, _psydux.el)('a', function () {
 	    return item;
 	  }, { class: 'list-group-item' });
-	};
+	},
+	    todoInput = input('Add Todo'),
+	    todoList = listGroup(),
+	    todoForm = form(row(col(8, 'xs', todoInput), col(4, 'xs', button({ type: 'success', text: 'Add' }))));
 
 	todoForm.onsubmit = function (e) {
 	  e.preventDefault();
@@ -77,24 +118,17 @@
 	    return;
 	  }
 
-	  var todo = todoItem(todoInput.value);
+	  var todo = listGroupItem(todoInput.value);
 
 	  todo.onclick = function () {
 	    this.style.textDecoration = this.style.textDecoration === 'none' ? 'line-through' : 'none';
 	  };
 
 	  todoList.unshift(todo);
-
 	  todoInput.value = '';
 	};
 
-	var title = function title(text) {
-	  return (0, _psydux.el)('h1', function () {
-	    return text;
-	  });
-	};
-
-	(0, _psydux.render)((0, _container2.default)(title('Todo list'), todoForm, (0, _psydux.el)('hr'), todoList));
+	(0, _psydux.render)(container(title('Todo list'), todoForm, (0, _psydux.el)('hr'), todoList));
 
 	todoInput.focus();
 
@@ -8642,102 +8676,6 @@
 
 	  document.body.insertBefore(root, document.body.firstChild);
 	};
-
-/***/ },
-/* 309 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.button = exports.form = exports.input = undefined;
-
-	var _psydux = __webpack_require__(1);
-
-	var input = exports.input = function input(placeholder) {
-	  return (0, _psydux.el)('input', { placeholder: placeholder, class: 'form-control' });
-	}; /**
-	    * Created by timur on 12/21/16.
-	    */
-
-	var form = exports.form = function form() {
-	  for (var _len = arguments.length, elements = Array(_len), _key = 0; _key < _len; _key++) {
-	    elements[_key] = arguments[_key];
-	  }
-
-	  return (0, _psydux.el)('form', function () {
-	    return elements;
-	  });
-	};
-
-	var button = exports.button = function button(_ref) {
-	  var type = _ref.type,
-	      text = _ref.text;
-	  return (0, _psydux.el)('button', function () {
-	    return text;
-	  }, { class: 'btn btn-' + type + ' btn-block' });
-	};
-
-/***/ },
-/* 310 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.col = exports.row = undefined;
-
-	var _psydux = __webpack_require__(1);
-
-	var row = exports.row = function row() {
-	  for (var _len = arguments.length, elements = Array(_len), _key = 0; _key < _len; _key++) {
-	    elements[_key] = arguments[_key];
-	  }
-
-	  return (0, _psydux.el)('div', function () {
-	    return elements;
-	  }, { class: 'row' });
-	}; /**
-	    * Created by timur on 12/21/16.
-	    */
-
-	var col = exports.col = function col(amount, display) {
-	  for (var _len2 = arguments.length, elements = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
-	    elements[_key2 - 2] = arguments[_key2];
-	  }
-
-	  return (0, _psydux.el)('div', function () {
-	    return elements;
-	  }, { class: 'col-' + display + '-' + amount });
-	};
-
-/***/ },
-/* 311 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _psydux = __webpack_require__(1);
-
-	exports.default = function () {
-	  for (var _len = arguments.length, elements = Array(_len), _key = 0; _key < _len; _key++) {
-	    elements[_key] = arguments[_key];
-	  }
-
-	  return (0, _psydux.el)('div', function () {
-	    return elements;
-	  }, { class: 'container-fluid' });
-	}; /**
-	    * Created by timur on 12/21/16.
-	    */
 
 /***/ }
 /******/ ]);
