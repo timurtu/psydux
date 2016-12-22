@@ -23,13 +23,11 @@ npm install --save psydux
 ```javascript
 import { el, render } from 'psydux'
 
-const button = ({ type, text }) => el('button', () => text, { class: `btn btn-${type}` })
+const h1 = text => el('h1', () => text)
 
-const btn = button({ type: 'primary', text: 'hello' })
-
-btn.onclick = () => alert('psydux')
-
-render(btn)
+render(
+  h1('Hello, World!')
+)
 ```
 
 [See more examples](https://github.com/timurtu/psydux/tree/master/examples)
