@@ -115,7 +115,7 @@
 	  e.preventDefault();
 
 	  if (todoInput.value === '') {
-	    return;
+	    return alert('Todo cannot be empty');
 	  }
 
 	  var todo = listGroupItem(todoInput.value);

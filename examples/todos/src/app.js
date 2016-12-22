@@ -20,7 +20,7 @@ todoForm.onsubmit = e => {
   e.preventDefault()
 
   if (todoInput.value === '') {
-    return
+    return alert('Todo cannot be empty')
   }
 
   const todo = listGroupItem(todoInput.value)
