@@ -87,10 +87,7 @@ import { el, render } from 'psydux'
 render(
   el('div', () => [
     el('h1', () => 'Todo List'),
-    el('input', {
-      placeholder: 'Add a new todo!',
-      autoFocus: true
-    })
+    el('input', { placeholder: 'Add a new todo!' })
   ], { class: 'container' })
 )
 ```
