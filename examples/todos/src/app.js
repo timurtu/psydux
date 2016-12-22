@@ -33,6 +33,11 @@ todoForm.onsubmit = e => {
   todoInput.value = ''
 }
 
-render(container(title('Todo list'), todoForm, el('hr'), todoList))
+render(container(
+    title('Todo list'), 
+    todoForm, 
+    el('hr'), 
+    todoList
+))
 
 todoInput.focus()
