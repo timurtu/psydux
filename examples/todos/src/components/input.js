@@ -4,4 +4,8 @@
 
 import { el } from 'psydux'
 
-export default placeholder => el('input', { placeholder, class: 'form-control' })
+export const input = placeholder => el('input', { placeholder, class: 'form-control' })
+
+export const form = (...elements) => el('form', () => elements)
+
+export const button = ({ type, text }) => el('button', () => text, { class: `btn btn-${type} btn-block` })

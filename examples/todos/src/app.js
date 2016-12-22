@@ -1,9 +1,8 @@
 import { el, render } from 'psydux'
-import container from './components/container'
-import input from './components/input'
+import { input, form, button } from './components/input'
 import { row, col } from './components/grid'
-import button from './components/button'
-import form from './components/form'
+import container from './components/container'
+
 
 const todoInput = input('Add Todo')
 
