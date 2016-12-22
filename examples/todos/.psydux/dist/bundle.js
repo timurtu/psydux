@@ -48,43 +48,29 @@
 
 	var _psydux = __webpack_require__(1);
 
-	var _container = __webpack_require__(309);
+	var _input = __webpack_require__(309);
+
+	var _grid = __webpack_require__(310);
+
+	var _container = __webpack_require__(311);
 
 	var _container2 = _interopRequireDefault(_container);
 
-	var _input = __webpack_require__(310);
-
-	var _input2 = _interopRequireDefault(_input);
-
-	var _grid = __webpack_require__(311);
-
-	var _button = __webpack_require__(312);
-
-	var _button2 = _interopRequireDefault(_button);
-
-	var _form = __webpack_require__(313);
-
-	var _form2 = _interopRequireDefault(_form);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var todoInput = (0, _input2.default)('Add Todo');
+	var todoInput = (0, _input.input)('Add Todo');
 
-	var todoForm = (0, _form2.default)((0, _grid.row)((0, _grid.col)(8, 'xs', todoInput), (0, _grid.col)(4, 'xs', (0, _button2.default)({ type: 'success', text: 'Add' }))));
+	var todoForm = (0, _input.form)((0, _grid.row)((0, _grid.col)(8, 'xs', todoInput), (0, _grid.col)(4, 'xs', (0, _input.button)({ type: 'success', text: 'Add' }))));
 
 	var todoList = (0, _psydux.el)('div', { class: 'list-group' });
 
 	var todoItem = function todoItem(item) {
 	  return (0, _psydux.el)('a', function () {
 	    return item;
-	  }, {
-	    class: 'list-group-item',
-	    role: 'button'
-	  });
+	  }, { class: 'list-group-item' });
 	};
 
 	todoForm.onsubmit = function (e) {
-
 	  e.preventDefault();
 
 	  if (todoInput.value === '') {
@@ -102,9 +88,13 @@
 	  todoInput.value = '';
 	};
 
-	(0, _psydux.render)((0, _container2.default)((0, _psydux.el)('h1', function () {
-	  return 'Todo List';
-	}), todoForm, (0, _psydux.el)('hr'), todoList));
+	var title = function title(text) {
+	  return (0, _psydux.el)('h1', function () {
+	    return text;
+	  });
+	};
+
+	(0, _psydux.render)((0, _container2.default)(title('Todo list'), todoForm, (0, _psydux.el)('hr'), todoList));
 
 	todoInput.focus();
 
@@ -8662,41 +8652,36 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.button = exports.form = exports.input = undefined;
 
 	var _psydux = __webpack_require__(1);
 
-	exports.default = function () {
-	  for (var _len = arguments.length, elements = Array(_len), _key = 0; _key < _len; _key++) {
-	    elements[_key] = arguments[_key];
-	  }
-
-	  return (0, _psydux.el)('div', function () {
-	    return elements;
-	  }, { class: 'container-fluid' });
-	}; /**
-	    * Created by timur on 12/21/16.
-	    */
-
-/***/ },
-/* 310 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _psydux = __webpack_require__(1);
-
-	exports.default = function (placeholder) {
+	var input = exports.input = function input(placeholder) {
 	  return (0, _psydux.el)('input', { placeholder: placeholder, class: 'form-control' });
 	}; /**
 	    * Created by timur on 12/21/16.
 	    */
 
+	var form = exports.form = function form() {
+	  for (var _len = arguments.length, elements = Array(_len), _key = 0; _key < _len; _key++) {
+	    elements[_key] = arguments[_key];
+	  }
+
+	  return (0, _psydux.el)('form', function () {
+	    return elements;
+	  });
+	};
+
+	var button = exports.button = function button(_ref) {
+	  var type = _ref.type,
+	      text = _ref.text;
+	  return (0, _psydux.el)('button', function () {
+	    return text;
+	  }, { class: 'btn btn-' + type + ' btn-block' });
+	};
+
 /***/ },
-/* 311 */
+/* 310 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8731,29 +8716,7 @@
 	};
 
 /***/ },
-/* 312 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _psydux = __webpack_require__(1);
-
-	exports.default = function (_ref) {
-	  var type = _ref.type,
-	      text = _ref.text;
-	  return (0, _psydux.el)('button', function () {
-	    return text;
-	  }, { class: 'btn btn-' + type + ' btn-block' });
-	}; /**
-	    * Created by timur on 12/21/16.
-	    */
-
-/***/ },
-/* 313 */
+/* 311 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8769,9 +8732,9 @@
 	    elements[_key] = arguments[_key];
 	  }
 
-	  return (0, _psydux.el)('form', function () {
+	  return (0, _psydux.el)('div', function () {
 	    return elements;
-	  });
+	  }, { class: 'container-fluid' });
 	}; /**
 	    * Created by timur on 12/21/16.
 	    */

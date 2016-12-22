@@ -15,13 +15,9 @@ const todoForm = form(
 
 const todoList = el('div', { class: 'list-group' })
 
-const todoItem = item => el('a', () => item, {
-  class: 'list-group-item',
-  role: 'button',
-})
+const todoItem = item => el('a', () => item, { class: 'list-group-item' })
 
 todoForm.onsubmit = e => {
-
   e.preventDefault()
 
   if (todoInput.value === '') {
@@ -39,9 +35,11 @@ todoForm.onsubmit = e => {
   todoInput.value = ''
 }
 
+const title = text => el('h1', () => text)
+
 render(
   container(
-    el('h1', () => 'Todo List'),
+    title('Todo list'),
     todoForm,
     el('hr'),
     todoList
