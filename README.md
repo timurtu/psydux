@@ -2,7 +2,7 @@
 
 A functional JavaScript Framework for building user interfaces
 
-- __Functional__ - Declare functions that return DOM elements
+- __Functional__ - Declare functions that return components
 
 - __Modular__ - Share functions across applications
 
