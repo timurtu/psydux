@@ -42,7 +42,7 @@ Notice how we are creating reusable functions that return components. This is th
 Next let's create the list that will hold our todos.
 
 ```javascript
-import { el } from 'psydux'
+import { el, render } from 'psydux'
 
 
 const todos = []
@@ -76,11 +76,13 @@ const list = msgs => el('ul', {
   class: 'list-group-item'
 }, () => msg)))
 
-container(
-  title('Todo list'),
-  input('Add a new todo!'),
-  button('primary', 'Add todo'),
-  list(todos)
+render(
+  container(
+    title('Todo list'),
+    input('Add a new todo!'),
+    button('primary', 'Add todo'),
+    list(todos)
+  )
 )
 ```
 
