@@ -21,12 +21,6 @@ export default function list(...items) {
 }
 
 
-// You can always test a function that returns a component simply by
-// calling it. Uncomment the line below to try it.
-
-// list('how', 'does', 'this', 'work?')
-
-
 /**
  * The commented function below is exactly the same
  * as the function above, but with arrow functions.
