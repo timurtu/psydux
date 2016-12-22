@@ -7,17 +7,17 @@ import { el } from 'psydux'
  * @returns {*} A div tag containing a list of anchor tags
  */
 export default function list(...items) {
-  return el('div', { class: 'list-group' }, function () {
+  return el('div', function () {
     return items.map(function (item) {
-      return el('a', {
+      return el('a', function () {
+        return item
+      }, {
         id: item,
         class: 'list-group-item',
         href: `#${item}`
-      }, function () {
-        return item
       })
     })
-  })
+  }, { class: 'list-group' })
 }
 
 
@@ -33,5 +33,5 @@ export default function list(...items) {
  */
 
 // export default (...items) =>
-//   el('div', { class: 'list-group' }, () => items.map(item =>
-//     el('a', { id: item, class: 'list-group-item', href: `#${item}` }, () => item)))
+//   el('div', () => items.map(item =>
+//     el('a', () => item, { id: item, class: 'list-group-item', href: `#${item}` })), { class: 'list-group' })
