@@ -48,6 +48,10 @@
 
 	var _psydux = __webpack_require__(1);
 
+	function div() {
+	  return _psydux.el.apply(undefined, ['div'].concat(Array.prototype.slice.call(arguments)));
+	}
+
 	var input = function input(placeholder) {
 	  return (0, _psydux.el)('input', { placeholder: placeholder, class: 'form-control' });
 	},
@@ -65,7 +69,7 @@
 	    elements[_key2] = arguments[_key2];
 	  }
 
-	  return (0, _psydux.el)('div', function () {
+	  return div(function () {
 	    return elements;
 	  }, { class: 'container-fluid' });
 	},
@@ -81,7 +85,7 @@
 	    elements[_key3] = arguments[_key3];
 	  }
 
-	  return (0, _psydux.el)('div', function () {
+	  return div(function () {
 	    return elements;
 	  }, { class: 'row' });
 	},
@@ -90,7 +94,7 @@
 	    elements[_key4 - 2] = arguments[_key4];
 	  }
 
-	  return (0, _psydux.el)('div', function () {
+	  return div(function () {
 	    return elements;
 	  }, { class: 'col-' + display + '-' + amount });
 	},
@@ -100,10 +104,10 @@
 	  });
 	},
 	    listGroup = function listGroup() {
-	  return (0, _psydux.el)('div', { class: 'list-group' });
+	  return div({ class: 'list-group' });
 	},
 	    listGroupItem = function listGroupItem(item) {
-	  return (0, _psydux.el)('a', function () {
+	  return div(function () {
 	    return item;
 	  }, { class: 'list-group-item' });
 	},
