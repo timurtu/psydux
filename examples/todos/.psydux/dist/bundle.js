@@ -142,7 +142,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.state = exports.el = undefined;
+	exports.render = exports.state = exports.el = undefined;
 
 	var _el = __webpack_require__(2);
 
@@ -152,14 +152,17 @@
 
 	var _state2 = _interopRequireDefault(_state);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	var _render = __webpack_require__(4);
 
-	/**
-	 * Created by timur on 8/31/16.
-	 */
+	var _render2 = _interopRequireDefault(_render);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.el = _el2.default;
 	exports.state = _state2.default;
+	exports.render = _render2.default; /**
+	                                    * Created by timur on 8/31/16.
+	                                    */
 
 /***/ },
 /* 2 */
@@ -177,49 +180,48 @@
 	  var tag = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
 	  var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 	  var attributes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+	  return function () {
 
+	    var node = document.createElement(tag);
 
-	  var node = document.createElement(tag);
+	    switch (typeof callback === 'undefined' ? 'undefined' : _typeof(callback)) {
 
-	  switch (typeof callback === 'undefined' ? 'undefined' : _typeof(callback)) {
+	      case 'function':
+	        {
 
-	    case 'function':
-	      {
+	          var returnValue = callback();
 
-	        var returnValue = callback();
+	          switch (typeof returnValue === 'undefined' ? 'undefined' : _typeof(returnValue)) {
 
-	        switch (typeof returnValue === 'undefined' ? 'undefined' : _typeof(returnValue)) {
+	            case 'object':
+	              {
+	                Array.isArray(returnValue) ? Array.prototype.forEach.call(returnValue, function (element) {
+	                  return node.appendChild(element);
+	                }) : node.appendChild(returnValue);
+	                break;
+	              }
 
-	          case 'object':
-	            {
-	              Array.isArray(returnValue) ? Array.prototype.forEach.call(returnValue, function (element) {
-	                return node.appendChild(element);
-	              }) : node.appendChild(returnValue);
-	              break;
-	            }
-
-	          case 'string':
-	            {
-	              node.appendChild(document.createTextNode(returnValue));
-	              break;
-	            }
+	            case 'string':
+	              {
+	                node.appendChild(document.createTextNode(returnValue));
+	                break;
+	              }
+	          }
+	          break;
 	        }
-	        break;
-	      }
 
-	    case 'object':
-	      {
-	        attributes = callback;
-	      }
-	  }
+	      case 'object':
+	        {
+	          attributes = callback;
+	        }
+	    }
 
-	  for (var a in attributes) {
-	    node.setAttribute(a, attributes[a]);
-	  }
+	    for (var a in attributes) {
+	      node.setAttribute(a, attributes[a]);
+	    }
 
-	  document.body.appendChild(node);
-
-	  return node;
+	    return node;
+	  };
 	};
 
 /***/ },
@@ -249,6 +251,62 @@
 
 	exports.default = {
 	  get: get, set: set
+	};
+
+/***/ },
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	/**
+	 * Created by timur on 12/21/16.
+	 */
+
+	exports.default = function () {
+	  var _marked = [generator].map(regeneratorRuntime.mark);
+
+	  for (var _len = arguments.length, functions = Array(_len), _key = 0; _key < _len; _key++) {
+	    functions[_key] = arguments[_key];
+	  }
+
+	  var root = document.createElement('div');
+
+	  function generator(items) {
+	    return regeneratorRuntime.wrap(function generator$(_context) {
+	      while (1) {
+	        switch (_context.prev = _context.next) {
+	          case 0:
+	            if (false) {
+	              _context.next = 5;
+	              break;
+	            }
+
+	            _context.next = 3;
+	            return items.forEach(function (item) {
+	              root.appendChild(item());
+	            });
+
+	          case 3:
+	            _context.next = 0;
+	            break;
+
+	          case 5:
+	          case 'end':
+	            return _context.stop();
+	        }
+	      }
+	    }, _marked[0], this);
+	  }
+
+	  var gen = generator(functions);
+	  gen.next();
+
+	  document.body.insertBefore(root, document.body.firstChild);
 	};
 
 /***/ }

@@ -4,7 +4,7 @@ module.exports = config => {
 
     browsers: ['PhantomJS'],
     frameworks: ['mocha', 'chai', 'sinon'],
-    files: ['./node_modules/babel-polyfill/dist/polyfill.js', {
+    files: [{
       pattern: './test/dist/test.js',
       watched: true,
       served: true,

@@ -39,7 +39,6 @@ todoForm.onsubmit = e => {
 
 const todoList = el('ul', () => state.get().todos.map(todo => el('li', () => todo)))
 
-
 render(
   container(
     title('Todo List'),
