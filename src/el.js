@@ -1,4 +1,4 @@
-export default (tag = 'div', callback = {}, attributes = {}) => {
+export default (tag = 'div', callback = {}, attributes = {}) => function () {
 
   const node = document.createElement(tag)
 
@@ -32,8 +32,6 @@ export default (tag = 'div', callback = {}, attributes = {}) => {
   for (const a in attributes) {
     node.setAttribute(a, attributes[a])
   }
-
-  document.body.appendChild(node)
 
   return node
 }

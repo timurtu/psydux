@@ -30,7 +30,6 @@ describe('state', function () {
       state.set({ name: 'Uzel' })
       expect(state.get()).to.deep.equal({ name: 'Uzel' })
     })
-
   })
 
 })

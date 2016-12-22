@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.state = exports.el = undefined;
+exports.render = exports.state = exports.el = undefined;
 
 var _el = require('./el');
 
@@ -13,11 +13,14 @@ var _state = require('./state');
 
 var _state2 = _interopRequireDefault(_state);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _render = require('./render');
 
-/**
- * Created by timur on 8/31/16.
- */
+var _render2 = _interopRequireDefault(_render);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.el = _el2.default;
 exports.state = _state2.default;
+exports.render = _render2.default; /**
+                                    * Created by timur on 8/31/16.
+                                    */

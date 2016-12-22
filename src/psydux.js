@@ -4,8 +4,10 @@
 
 import el from './el'
 import state from './state'
+import render from './render'
 
 export {
   el,
-  state
+  state,
+  render
 }

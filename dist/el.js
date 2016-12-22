@@ -10,47 +10,46 @@ exports.default = function () {
   var tag = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
   var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   var attributes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  return function () {
 
+    var node = document.createElement(tag);
 
-  var node = document.createElement(tag);
+    switch (typeof callback === 'undefined' ? 'undefined' : _typeof(callback)) {
 
-  switch (typeof callback === 'undefined' ? 'undefined' : _typeof(callback)) {
+      case 'function':
+        {
 
-    case 'function':
-      {
+          var returnValue = callback();
 
-        var returnValue = callback();
+          switch (typeof returnValue === 'undefined' ? 'undefined' : _typeof(returnValue)) {
 
-        switch (typeof returnValue === 'undefined' ? 'undefined' : _typeof(returnValue)) {
+            case 'object':
+              {
+                Array.isArray(returnValue) ? Array.prototype.forEach.call(returnValue, function (element) {
+                  return node.appendChild(element);
+                }) : node.appendChild(returnValue);
+                break;
+              }
 
-          case 'object':
-            {
-              Array.isArray(returnValue) ? Array.prototype.forEach.call(returnValue, function (element) {
-                return node.appendChild(element);
-              }) : node.appendChild(returnValue);
-              break;
-            }
-
-          case 'string':
-            {
-              node.appendChild(document.createTextNode(returnValue));
-              break;
-            }
+            case 'string':
+              {
+                node.appendChild(document.createTextNode(returnValue));
+                break;
+              }
+          }
+          break;
         }
-        break;
-      }
 
-    case 'object':
-      {
-        attributes = callback;
-      }
-  }
+      case 'object':
+        {
+          attributes = callback;
+        }
+    }
 
-  for (var a in attributes) {
-    node.setAttribute(a, attributes[a]);
-  }
+    for (var a in attributes) {
+      node.setAttribute(a, attributes[a]);
+    }
 
-  document.body.appendChild(node);
-
-  return node;
+    return node;
+  };
 };
