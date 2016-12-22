@@ -51,9 +51,7 @@ import { render, el } from 'psydux'
 
 const input = placeholder => el('input', { placeholder })
 
-render(
-  input('Add a new todo!')
-)
+render(input('Add a new todo!'))
 ```
 
 The el or element function takes more than just the type of your element. Specifically, it takes 3 different things.
@@ -69,6 +67,7 @@ import { render, el } from 'psydux'
 
 
 const h1 = text => el('h1', () => text)
+
 const input = placeholder => el('input', { placeholder })
 
 render(
@@ -103,8 +102,11 @@ import { el, render } from 'psydux'
 
 
 const container = (...els) => el('div', () => els, { class: 'container' })
+
 const h1 = text => el('h1', () => text)
+
 const input = placeholder => el('input', { placeholder })
+
 const button = text => el('button', () => text)
 
 render(container(
