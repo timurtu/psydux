@@ -32,7 +32,7 @@ render(
 
 [See more examples](https://github.com/timurtu/psydux/tree/master/examples)
 
-Psydux is Modern JavaScript framework for web developers who are sick of repeating themselves with markup languages and want to build web applications with reusable functions.
+Psydux is Modern JavaScript framework for building web applications with reusable functions.
 
 The easiest way get started using the Psydux JavaScript framework is to install the command line interface. Install [node](https://nodejs.org)
 first if you have not already.
