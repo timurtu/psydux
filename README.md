@@ -49,6 +49,6 @@ then
 psydux my-app && cd my-app && psydux
 ```
 
-[Learn more about the Psydux CLI](https://github.com/timurtu/psydux-cli).
+[Learn more about the Psydux CLI](https://github.com/timurtu/psydux-cli)
 
 [Get started with Psydux](docs/getting-started.md)
