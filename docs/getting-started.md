@@ -30,42 +30,46 @@ Remove every file from the __src__ folder so we can start our todo application f
 Let's create our first element. Create a file called __app.js__ and program the following.
 
 ```javascript
-import { el } from 'psydux'
+import { render, el } from 'psydux'
 
-el('h1', {}, function () {
+const hello = () => el('h1', function () {
   return 'Hello, world!'
 })
+
+render(hello)
 ```
 
 Now you'll notice a few things here. For one, we're not repeating that h1 tag twice. We're simply declaring the type of element we wish to create and passing it to Psydux's el (element) function.
 
-We leave the second argument `{}` blank because in this situation we do not need to set any attributes.
-
-Third is a callback function. The return value here is a String, but it doesn't need to be.
+Next is a callback function. The return value here is a String, but it doesn't need to be.
 
 If you run psydux from the psydux-cli at this point you should see __'Hello, world!'__ in your browser. This is nice and all but our app isn't really doing much so let's fix that.
 
 Remove the line we created and program the following
 
 ```javascript
+import { render, el } from 'psydux'
+
 const input = el('input', {
   placeholder: 'Add a new todo!',
   autoFocus: true
 })
+
+render(input)
 ```
 
 The el or element function takes more than just the type of your element. Specifically, it takes 3 different things.
 
 1. Type of element (string)
-2. Attributes (object)
-3. Callback (function)
+2. Callback (function)
+3. Attributes (object)
 
 What's the callback for? I'll explain by fixing our current problem. If you look at the browser you'll see that our element is squished up against the side. It's hurting my eyes. Let's give it some pre-built padding with bootstrap.
 
 ```javascript
-import { el } from 'psydux'
+import { render, el } from 'psydux'
 
-const h1 = el('h1', {}, function () {
+const h1 = el('h1', function () {
   return 'Todo List'
 })
 
@@ -74,38 +78,45 @@ const input = el('input', {
   autoFocus: true
 })
 
-el('div', { class: 'container' }, function () {
-  return [ h1, input ]
-})
+
+render(
+  el('div', function () {
+    return [ h1, input ]
+  }, { class: 'container' })
+)
 ```
 
 Ah that's much better. We could also write it like this.
 
 ```javascript
-import { el } from 'psydux'
+import { el, render } from 'psydux'
 
-el('div', { class: 'container' }, () => [
-  el('h1', {}, () => 'Todo List'),
-  el('input', {
-    placeholder: 'Add a new todo!',
-    autoFocus: true
-  })
-])
+render(
+  el('div', { class: 'container' }, () => [
+    el('h1', () => 'Todo List'),
+    el('input', {
+      placeholder: 'Add a new todo!',
+      autoFocus: true
+    })
+  ])
+)
 ```
 
 Next let's add a button
 
 ```javascript
-import { el } from 'psydux'
+import { el, render } from 'psydux'
 
-el('div', { class: 'container' }, () => [
-  el('h1', {}, () => 'Todo List'),
-  el('input', {
-    placeholder: 'Add a new todo!',
-    autoFocus: true
-  }),
-  el('button', {}, () => 'Add todo')
-])
+render(
+  el('div', () => [
+    el('h1', () => 'Todo List'),
+    el('input', {
+      placeholder: 'Add a new todo!',
+      autoFocus: true
+    }),
+    el('button', () => 'Add todo')
+  ], { class: 'container' })
+)
 ```
 
 At this point you should be seeing a padded h1, input, and button all with corresponding text in your browser.

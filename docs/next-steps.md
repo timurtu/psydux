@@ -4,15 +4,15 @@ This element is getting pretty big so let's refactor by creating our own functio
 
 
 ```javascript
-import { el } from 'psydux'
+import { el, render } from 'psydux'
 
 
 const style = 'margin: 1rem'
 
-const title = msg => el('h1', {
+const title = msg => el('h1', () => msg, {
   class: 'display-3',
   style
-}, () => msg)
+})
 
 const input = placeholder => el('input', {
   autoFocus: true,
@@ -21,19 +21,19 @@ const input = placeholder => el('input', {
   style
 })
 
-const button = (type, child) => el('button', {
+const button = (type, child) => el('button', () => child, {
   class: `btn btn-${type} btn-block`,
   style
-}, () => child)
+})
 
-const container = (...elements) => el('div', {
-  class: 'container'
-}, () => elements)
+const container = (...elements) => el('div', () => elements, { class: 'container' })
 
-container(
-  title('Todo list'),
-  input('Add a new todo!'),
-  button('primary', 'Add todo')
+render(
+  container(
+    title('Todo list'),
+    input('Add a new todo!'),
+    button('primary', 'Add todo')
+  )
 )
 ```
 
