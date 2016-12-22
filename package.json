@@ -1,6 +1,6 @@
 {
   "name": "psydux",
-  "version": "2.2.9",
+  "version": "2.2.10",
   "description": "A Psychic JavaScript framework for building UIs without HTML.",
   "main": "dist/psydux.js",
   "files": [
