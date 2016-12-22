@@ -12,7 +12,9 @@ describe('render', function () {
 
   it('should render a div to the dom', function () {
 
-    render(el('div'))
+    const div = () => el('div')
+
+    render(div)
 
     expect(document.body.firstChild.outerHTML).to.equal('<div><div></div></div>')
   })
@@ -21,9 +23,18 @@ describe('render', function () {
 
     const p = () => el('p')
 
-    render(p(), p())
+    render(p, p)
 
     expect(document.body.firstChild.outerHTML).to.equal('<div><p></p><p></p></div>')
+  })
+
+  it('should render a nested li', function () {
+
+    const list = (...items) => el('ul', () => items.map(item => el('li', () => item)))
+
+    render(list('nested', 'content'))
+
+    expect(document.body.firstChild.outerHTML).to.equal('<div><ul><li>nested</li><li>content</li></ul></div>')
   })
 
 })

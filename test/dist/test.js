@@ -66,22 +66,22 @@
 
 	    it('Should be a div', function () {
 
-	      expect((0, _psydux.el)()().outerHTML).to.equal('<div></div>');
+	      expect((0, _psydux.el)().outerHTML).to.equal('<div></div>');
 	    });
 
 	    it('Should be an h1', function () {
 
-	      expect((0, _psydux.el)('h1')().outerHTML).to.equal('<h1></h1>');
+	      expect((0, _psydux.el)('h1').outerHTML).to.equal('<h1></h1>');
 	    });
 
 	    it('Should be a paragraph', function () {
 
-	      expect((0, _psydux.el)('p')().outerHTML).to.equal('<p></p>');
+	      expect((0, _psydux.el)('p').outerHTML).to.equal('<p></p>');
 	    });
 
 	    it('Should be an image', function () {
 
-	      expect((0, _psydux.el)('img')().outerHTML).to.equal('<img>');
+	      expect((0, _psydux.el)('img').outerHTML).to.equal('<img>');
 	    });
 	  });
 
@@ -89,7 +89,7 @@
 
 	    it('Should set an id attribute', function () {
 
-	      expect((0, _psydux.el)('h1', { id: 'foo' })().getAttribute('id')).to.equal('foo');
+	      expect((0, _psydux.el)('h1', { id: 'foo' }).getAttribute('id')).to.equal('foo');
 	    });
 
 	    it('Should set a few attributes', function () {
@@ -98,7 +98,7 @@
 	        height: 420,
 	        width: 350,
 	        class: 'image'
-	      })();
+	      });
 
 	      expect(img.getAttribute('height')).to.equal('420');
 	      expect(img.getAttribute('width')).to.equal('350');
@@ -114,7 +114,7 @@
 
 	      expect((0, _psydux.el)('h1', function () {
 	        return txt;
-	      })().innerHTML).to.equal(txt);
+	      }).innerHTML).to.equal(txt);
 	    });
 
 	    it('Should set a paragraph\'s text', function () {
@@ -123,14 +123,14 @@
 
 	      expect((0, _psydux.el)('p', function () {
 	        return txt;
-	      })().innerHTML).to.equal(txt);
+	      }).innerHTML).to.equal(txt);
 	    });
 
 	    it('Should set a child element', function () {
 
 	      expect((0, _psydux.el)('ul', function () {
-	        return (0, _psydux.el)('li')();
-	      })().outerHTML).to.equal('<ul><li></li></ul>');
+	        return (0, _psydux.el)('li');
+	      }).outerHTML).to.equal('<ul><li></li></ul>');
 	    });
 
 	    it('Should set a list of lis', function () {
@@ -138,8 +138,8 @@
 	      var lis = '<li></li><li></li><li></li>';
 
 	      expect((0, _psydux.el)('ul', function () {
-	        return [(0, _psydux.el)('li')(), (0, _psydux.el)('li')(), (0, _psydux.el)('li')()];
-	      })().innerHTML).to.equal(lis);
+	        return [(0, _psydux.el)('li'), (0, _psydux.el)('li'), (0, _psydux.el)('li')];
+	      }).innerHTML).to.equal(lis);
 	    });
 	  });
 	});
@@ -8335,48 +8335,47 @@
 	  var tag = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
 	  var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 	  var attributes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-	  return function () {
 
-	    var node = document.createElement(tag);
 
-	    switch (typeof callback === 'undefined' ? 'undefined' : _typeof(callback)) {
+	  var node = document.createElement(tag);
 
-	      case 'function':
-	        {
+	  switch (typeof callback === 'undefined' ? 'undefined' : _typeof(callback)) {
 
-	          var returnValue = callback();
+	    case 'function':
+	      {
 
-	          switch (typeof returnValue === 'undefined' ? 'undefined' : _typeof(returnValue)) {
+	        var returnValue = callback();
 
-	            case 'object':
-	              {
-	                Array.isArray(returnValue) ? Array.prototype.forEach.call(returnValue, function (element) {
-	                  return node.appendChild(element);
-	                }) : node.appendChild(returnValue);
-	                break;
-	              }
+	        switch (typeof returnValue === 'undefined' ? 'undefined' : _typeof(returnValue)) {
 
-	            case 'string':
-	              {
-	                node.appendChild(document.createTextNode(returnValue));
-	                break;
-	              }
-	          }
-	          break;
+	          case 'object':
+	            {
+	              Array.isArray(returnValue) ? Array.prototype.forEach.call(returnValue, function (element) {
+	                return node.appendChild(element);
+	              }) : node.appendChild(returnValue);
+	              break;
+	            }
+
+	          case 'string':
+	            {
+	              node.appendChild(document.createTextNode(returnValue));
+	              break;
+	            }
 	        }
+	        break;
+	      }
 
-	      case 'object':
-	        {
-	          attributes = callback;
-	        }
-	    }
+	    case 'object':
+	      {
+	        attributes = callback;
+	      }
+	  }
 
-	    for (var a in attributes) {
-	      node.setAttribute(a, attributes[a]);
-	    }
+	  for (var a in attributes) {
+	    node.setAttribute(a, attributes[a]);
+	  }
 
-	    return node;
-	  };
+	  return node;
 	};
 
 /***/ },
@@ -8410,7 +8409,7 @@
 
 /***/ },
 /* 302 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	'use strict';
 
@@ -8418,48 +8417,36 @@
 	  value: true
 	});
 
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 	/**
 	 * Created by timur on 12/21/16.
 	 */
 
 	exports.default = function () {
-	  var _marked = [generator].map(regeneratorRuntime.mark);
-
 	  for (var _len = arguments.length, functions = Array(_len), _key = 0; _key < _len; _key++) {
 	    functions[_key] = arguments[_key];
 	  }
 
 	  var root = document.createElement('div');
 
-	  function generator(items) {
-	    return regeneratorRuntime.wrap(function generator$(_context) {
-	      while (1) {
-	        switch (_context.prev = _context.next) {
-	          case 0:
-	            if (false) {
-	              _context.next = 5;
-	              break;
-	            }
+	  functions.forEach(function (fn) {
 
-	            _context.next = 3;
-	            return items.forEach(function (item) {
-	              root.appendChild(item());
-	            });
+	    switch (typeof fn === 'undefined' ? 'undefined' : _typeof(fn)) {
 
-	          case 3:
-	            _context.next = 0;
-	            break;
-
-	          case 5:
-	          case 'end':
-	            return _context.stop();
+	      case 'function':
+	        {
+	          root.appendChild(fn());
+	          break;
 	        }
-	      }
-	    }, _marked[0], this);
-	  }
 
-	  var gen = generator(functions);
-	  gen.next();
+	      case 'object':
+	        {
+	          root.appendChild(fn);
+	          break;
+	        }
+	    }
+	  });
 
 	  document.body.insertBefore(root, document.body.firstChild);
 	};
@@ -8519,7 +8506,11 @@
 
 	  it('should render a div to the dom', function () {
 
-	    (0, _psydux.render)((0, _psydux.el)('div'));
+	    var div = function div() {
+	      return (0, _psydux.el)('div');
+	    };
+
+	    (0, _psydux.render)(div);
 
 	    expect(document.body.firstChild.outerHTML).to.equal('<div><div></div></div>');
 	  });
@@ -8530,9 +8521,30 @@
 	      return (0, _psydux.el)('p');
 	    };
 
-	    (0, _psydux.render)(p(), p());
+	    (0, _psydux.render)(p, p);
 
 	    expect(document.body.firstChild.outerHTML).to.equal('<div><p></p><p></p></div>');
+	  });
+
+	  it('should render a nested li', function () {
+
+	    var list = function list() {
+	      for (var _len = arguments.length, items = Array(_len), _key = 0; _key < _len; _key++) {
+	        items[_key] = arguments[_key];
+	      }
+
+	      return (0, _psydux.el)('ul', function () {
+	        return items.map(function (item) {
+	          return (0, _psydux.el)('li', function () {
+	            return item;
+	          });
+	        });
+	      });
+	    };
+
+	    (0, _psydux.render)(list('nested', 'content'));
+
+	    expect(document.body.firstChild.outerHTML).to.equal('<div><ul><li>nested</li><li>content</li></ul></div>');
 	  });
 	}); /**
 	     * Created by timur on 12/21/16.

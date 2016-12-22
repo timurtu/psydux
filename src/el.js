@@ -1,4 +1,4 @@
-export default (tag = 'div', callback = {}, attributes = {}) => function () {
+export default (tag = 'div', callback = {}, attributes = {}) => {
 
   const node = document.createElement(tag)
 

@@ -6,16 +6,21 @@ export default (...functions) => {
 
   const root = document.createElement('div')
 
-  function* generator(items) {
-    while(true) { // eslint-disable-line no-constant-condition
-      yield items.forEach(item => {
-        root.appendChild(item())
-      })
-    }
-  }
+  functions.forEach(fn => {
 
-  const gen = generator(functions)
-  gen.next()
+    switch(typeof fn) {
+
+      case 'function': {
+        root.appendChild(fn())
+        break
+      }
+
+      case 'object': {
+        root.appendChild(fn)
+        break
+      }
+    }
+  })
 
   document.body.insertBefore(root, document.body.firstChild)
 }

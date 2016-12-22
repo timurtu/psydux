@@ -10,46 +10,45 @@ exports.default = function () {
   var tag = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
   var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   var attributes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-  return function () {
 
-    var node = document.createElement(tag);
 
-    switch (typeof callback === 'undefined' ? 'undefined' : _typeof(callback)) {
+  var node = document.createElement(tag);
 
-      case 'function':
-        {
+  switch (typeof callback === 'undefined' ? 'undefined' : _typeof(callback)) {
 
-          var returnValue = callback();
+    case 'function':
+      {
 
-          switch (typeof returnValue === 'undefined' ? 'undefined' : _typeof(returnValue)) {
+        var returnValue = callback();
 
-            case 'object':
-              {
-                Array.isArray(returnValue) ? Array.prototype.forEach.call(returnValue, function (element) {
-                  return node.appendChild(element);
-                }) : node.appendChild(returnValue);
-                break;
-              }
+        switch (typeof returnValue === 'undefined' ? 'undefined' : _typeof(returnValue)) {
 
-            case 'string':
-              {
-                node.appendChild(document.createTextNode(returnValue));
-                break;
-              }
-          }
-          break;
+          case 'object':
+            {
+              Array.isArray(returnValue) ? Array.prototype.forEach.call(returnValue, function (element) {
+                return node.appendChild(element);
+              }) : node.appendChild(returnValue);
+              break;
+            }
+
+          case 'string':
+            {
+              node.appendChild(document.createTextNode(returnValue));
+              break;
+            }
         }
+        break;
+      }
 
-      case 'object':
-        {
-          attributes = callback;
-        }
-    }
+    case 'object':
+      {
+        attributes = callback;
+      }
+  }
 
-    for (var a in attributes) {
-      node.setAttribute(a, attributes[a]);
-    }
+  for (var a in attributes) {
+    node.setAttribute(a, attributes[a]);
+  }
 
-    return node;
-  };
+  return node;
 };

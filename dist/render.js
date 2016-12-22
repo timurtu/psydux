@@ -4,48 +4,36 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 /**
  * Created by timur on 12/21/16.
  */
 
 exports.default = function () {
-  var _marked = [generator].map(regeneratorRuntime.mark);
-
   for (var _len = arguments.length, functions = Array(_len), _key = 0; _key < _len; _key++) {
     functions[_key] = arguments[_key];
   }
 
   var root = document.createElement('div');
 
-  function generator(items) {
-    return regeneratorRuntime.wrap(function generator$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            if (!true) {
-              _context.next = 5;
-              break;
-            }
+  functions.forEach(function (fn) {
 
-            _context.next = 3;
-            return items.forEach(function (item) {
-              root.appendChild(item());
-            });
+    switch (typeof fn === 'undefined' ? 'undefined' : _typeof(fn)) {
 
-          case 3:
-            _context.next = 0;
-            break;
-
-          case 5:
-          case 'end':
-            return _context.stop();
+      case 'function':
+        {
+          root.appendChild(fn());
+          break;
         }
-      }
-    }, _marked[0], this);
-  }
 
-  var gen = generator(functions);
-  gen.next();
+      case 'object':
+        {
+          root.appendChild(fn);
+          break;
+        }
+    }
+  });
 
   document.body.insertBefore(root, document.body.firstChild);
 };

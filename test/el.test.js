@@ -6,23 +6,23 @@ describe('el', function () {
 
     it('Should be a div', function() {
 
-      expect(el()().outerHTML).to.equal('<div></div>')
+      expect(el().outerHTML).to.equal('<div></div>')
     })
 
     it('Should be an h1', function() {
 
-      expect(el('h1')().outerHTML).to.equal('<h1></h1>')
+      expect(el('h1').outerHTML).to.equal('<h1></h1>')
     })
 
 
     it('Should be a paragraph', function () {
 
-      expect(el('p')().outerHTML).to.equal('<p></p>')
+      expect(el('p').outerHTML).to.equal('<p></p>')
     })
 
     it('Should be an image', function () {
 
-      expect(el('img')().outerHTML).to.equal('<img>')
+      expect(el('img').outerHTML).to.equal('<img>')
     })
   })
 
@@ -30,7 +30,7 @@ describe('el', function () {
 
     it('Should set an id attribute', function () {
 
-      expect(el('h1', { id: 'foo' })().getAttribute('id')).to.equal('foo')
+      expect(el('h1', { id: 'foo' }).getAttribute('id')).to.equal('foo')
     })
 
     it('Should set a few attributes', function () {
@@ -39,7 +39,7 @@ describe('el', function () {
         height: 420,
         width: 350,
         class: 'image'
-      })()
+      })
 
       expect(img.getAttribute('height')).to.equal('420')
       expect(img.getAttribute('width')).to.equal('350')
@@ -53,19 +53,19 @@ describe('el', function () {
 
       const txt = 'hey'
 
-      expect(el('h1', () => txt)().innerHTML).to.equal(txt)
+      expect(el('h1', () => txt).innerHTML).to.equal(txt)
     })
 
     it('Should set a paragraph\'s text', function () {
 
       const txt = 'hello, world!'
 
-      expect(el('p', () => txt)().innerHTML).to.equal(txt)
+      expect(el('p', () => txt).innerHTML).to.equal(txt)
     })
 
     it('Should set a child element', function() {
 
-      expect(el('ul', () => el('li')())().outerHTML).to.equal('<ul><li></li></ul>')
+      expect(el('ul', () => el('li')).outerHTML).to.equal('<ul><li></li></ul>')
     })
 
     it('Should set a list of lis', function () {
@@ -73,10 +73,10 @@ describe('el', function () {
       const lis = '<li></li><li></li><li></li>'
 
       expect(el('ul', () => [
-        el('li')(),
-        el('li')(),
-        el('li')()
-      ])().innerHTML).to.equal(lis)
+        el('li'),
+        el('li'),
+        el('li')
+      ]).innerHTML).to.equal(lis)
     })
 
   })
