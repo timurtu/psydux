@@ -32,11 +32,9 @@ Let's create our first element. Create a file called __app.js__ and program the 
 ```javascript
 import { render, el } from 'psydux'
 
-const hello = () => el('h1', function () {
-  return 'Hello, world!'
-})
+const h1 = text => el('h1', () => text)
 
-render(hello)
+render(h1('Hello, world!'))
 ```
 
 Now you'll notice a few things here. For one, we're not repeating that h1 tag twice. We're simply declaring the type of element we wish to create and passing it to Psydux's el (element) function.
@@ -50,12 +48,12 @@ Remove the line we created and program the following
 ```javascript
 import { render, el } from 'psydux'
 
-const input = el('input', {
-  placeholder: 'Add a new todo!',
-  autoFocus: true
-})
 
-render(input)
+const input = placeholder => el('input', { placeholder })
+
+render(
+  input('Add a new todo!')
+)
 ```
 
 The el or element function takes more than just the type of your element. Specifically, it takes 3 different things.
@@ -69,20 +67,15 @@ What's the callback for? I'll explain by fixing our current problem. If you look
 ```javascript
 import { render, el } from 'psydux'
 
-const h1 = el('h1', function () {
-  return 'Todo List'
-})
 
-const input = el('input', {
-  placeholder: 'Add a new todo!',
-  autoFocus: true
-})
-
+const h1 = text => el('h1', () => text)
+const input = placeholder => el('input', { placeholder })
 
 render(
-  el('div', function () {
-    return [ h1, input ]
-  }, { class: 'container' })
+  el('div', () => [ 
+    h1('Todo List'), 
+    input('Add a new todo!')
+  ], { class: 'container' })
 )
 ```
 
@@ -91,21 +84,23 @@ Ah that's much better. We could also write it like this.
 ```javascript
 import { el, render } from 'psydux'
 
+
 render(
-  el('div', { class: 'container' }, () => [
+  el('div', () => [
     el('h1', () => 'Todo List'),
     el('input', {
       placeholder: 'Add a new todo!',
       autoFocus: true
     })
-  ])
+  ], { class: 'container' })
 )
 ```
 
-Next let's refactor for more reusable functions and add a button
+Next let's refactor by creating reusable functions that return components and add a button
 
 ```javascript
 import { el, render } from 'psydux'
+
 
 const container = (...els) => el('div', () => els, { class: 'container' })
 const h1 = text => el('h1', () => text)
@@ -119,7 +114,7 @@ render(container(
 ))
 ```
 
-At this point you should be seeing a padded h1, input, and button all with corresponding text in your browser.
+You should be seeing a padded h1, input, and button all with corresponding text in your browser.
 
 [Styling components](styling-components.md)
 
