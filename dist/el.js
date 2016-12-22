@@ -6,10 +6,6 @@ Object.defineProperty(exports, "__esModule", {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var components = exports.components = [];
-
-var count = 0;
-
 exports.default = function () {
   var tag = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
   var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -24,8 +20,6 @@ exports.default = function () {
       {
 
         var returnValue = callback();
-
-        components.push({ tag: tag, callback: callback, attributes: attributes, node: node, returnValue: returnValue, id: count });
 
         switch (typeof returnValue === 'undefined' ? 'undefined' : _typeof(returnValue)) {
 
@@ -57,8 +51,6 @@ exports.default = function () {
   }
 
   document.body.appendChild(node);
-
-  count++;
 
   return node;
 };

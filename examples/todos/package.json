@@ -25,6 +25,6 @@
     "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
-    "psydux": "^2.2.8"
+    "psydux": "^2.2.9"
   }
 }

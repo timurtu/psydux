@@ -182,10 +182,6 @@
 
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-	var components = exports.components = [];
-
-	var count = 0;
-
 	exports.default = function () {
 	  var tag = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
 	  var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -200,8 +196,6 @@
 	      {
 
 	        var returnValue = callback();
-
-	        components.push({ tag: tag, callback: callback, attributes: attributes, node: node, returnValue: returnValue, id: count });
 
 	        switch (typeof returnValue === 'undefined' ? 'undefined' : _typeof(returnValue)) {
 
@@ -234,26 +228,21 @@
 
 	  document.body.appendChild(node);
 
-	  count++;
-
 	  return node;
 	};
 
 /***/ },
 /* 4 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; /**
-	                                                                                                                                                                                                                                                                               * Created by timur on 12/19/2016.
-	                                                                                                                                                                                                                                                                               */
-
-	var _el = __webpack_require__(3);
+	/**
+	 * Created by timur on 12/19/2016.
+	 */
 
 	var states = [{}];
 	var count = 0;
@@ -265,43 +254,6 @@
 	function set(nextState) {
 	  states.push(nextState);
 	  count++;
-	  update(_el.components);
-	}
-
-	function update(components) {
-	  components.forEach(function (_ref) {
-	    var tag = _ref.tag,
-	        returnValue = _ref.returnValue,
-	        callback = _ref.callback,
-	        node = _ref.node;
-
-
-	    var nextValue = callback();
-
-	    if (returnValue !== nextValue) {
-	      (function () {
-
-	        var nextNode = document.createElement(tag);
-
-	        switch (typeof returnValue === 'undefined' ? 'undefined' : _typeof(returnValue)) {
-
-	          case 'object':
-	            {
-	              Array.isArray(nextValue) ? Array.prototype.forEach.call(nextValue, function (element) {
-	                return nextNode.appendChild(element);
-	              }) : node.appendChild(nextValue);
-	              break;
-	            }
-
-	          case 'string':
-	            {
-	              nextNode.appendChild(document.createTextNode(nextValue));
-	              break;
-	            }
-	        }
-	      })();
-	    }
-	  });
 	}
 
 	exports.default = {
