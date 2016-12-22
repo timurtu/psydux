@@ -1,4 +1,4 @@
-## Next steps
+## Styling Components
 
 With psydux you can style your components very easily, or use sass.
 
@@ -40,4 +40,4 @@ render(
 
 Pass around style and class properties when necessary.
  
-[Psydux State]() TODO
+[See some examples](https://github.com/timurtu/psydux/tree/master/examples)

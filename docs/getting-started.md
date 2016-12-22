@@ -102,23 +102,25 @@ render(
 )
 ```
 
-Next let's add a button
+Next let's refactor for more reusable functions and add a button
 
 ```javascript
 import { el, render } from 'psydux'
 
-render(
-  el('div', () => [
-    el('h1', () => 'Todo List'),
-    el('input', {
-      placeholder: 'Add a new todo!',
-      autoFocus: true
-    }),
-    el('button', () => 'Add todo')
-  ], { class: 'container' })
-)
+const container = (...els) => el('div', () => els, { class: 'container' })
+const h1 = text => el('h1', () => text)
+const input = placeholder => el('input', { placeholder })
+const button = text => el('button', () => text)
+
+render(container(
+  h1('Todo List'),
+  input('Add a new todo!'),
+  button('Add')
+))
 ```
 
 At this point you should be seeing a padded h1, input, and button all with corresponding text in your browser.
 
 [Styling components](styling-components.md)
+
+[Example Applications](https://github.com/timurtu/psydux/tree/master/examples)
