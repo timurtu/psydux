@@ -48,67 +48,29 @@
 
 	var _psydux = __webpack_require__(1);
 
-	var container = function container() {
-	  for (var _len = arguments.length, elements = Array(_len), _key = 0; _key < _len; _key++) {
-	    elements[_key] = arguments[_key];
-	  }
+	var _container = __webpack_require__(309);
 
-	  return (0, _psydux.el)('div', function () {
-	    return elements;
-	  }, { class: 'container-fluid' });
-	};
+	var _container2 = _interopRequireDefault(_container);
 
-	var title = function title(text) {
-	  return (0, _psydux.el)('h1', function () {
-	    return text;
-	  });
-	};
+	var _input = __webpack_require__(310);
 
-	var input = function input(placeholder) {
-	  return (0, _psydux.el)('input', { placeholder: placeholder, class: 'form-control' });
-	};
+	var _input2 = _interopRequireDefault(_input);
 
-	var form = function form() {
-	  for (var _len2 = arguments.length, elements = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-	    elements[_key2] = arguments[_key2];
-	  }
+	var _grid = __webpack_require__(311);
 
-	  return (0, _psydux.el)('form', function () {
-	    return elements;
-	  });
-	};
+	var _button = __webpack_require__(312);
 
-	var row = function row() {
-	  for (var _len3 = arguments.length, elements = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
-	    elements[_key3] = arguments[_key3];
-	  }
+	var _button2 = _interopRequireDefault(_button);
 
-	  return (0, _psydux.el)('div', function () {
-	    return elements;
-	  }, { class: 'row' });
-	};
+	var _form = __webpack_require__(313);
 
-	var col = function col(amount, display) {
-	  for (var _len4 = arguments.length, elements = Array(_len4 > 2 ? _len4 - 2 : 0), _key4 = 2; _key4 < _len4; _key4++) {
-	    elements[_key4 - 2] = arguments[_key4];
-	  }
+	var _form2 = _interopRequireDefault(_form);
 
-	  return (0, _psydux.el)('div', function () {
-	    return elements;
-	  }, { class: 'col-' + display + '-' + amount });
-	};
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var button = function button(_ref) {
-	  var type = _ref.type,
-	      text = _ref.text;
-	  return (0, _psydux.el)('button', function () {
-	    return text;
-	  }, { class: 'btn btn-' + type + ' btn-block' });
-	};
+	var todoInput = (0, _input2.default)('Add Todo');
 
-	var todoInput = input('Add Todo');
-
-	var todoForm = form(row(col(8, 'xs', todoInput), col(4, 'xs', button({ type: 'success', text: 'Add' }))));
+	var todoForm = (0, _form2.default)((0, _grid.row)((0, _grid.col)(8, 'xs', todoInput), (0, _grid.col)(4, 'xs', (0, _button2.default)({ type: 'success', text: 'Add' }))));
 
 	var todoList = (0, _psydux.el)('div', { class: 'list-group' });
 
@@ -140,7 +102,9 @@
 	  todoInput.value = '';
 	};
 
-	(0, _psydux.render)(container(title('Todo List'), todoForm, (0, _psydux.el)('hr'), todoList));
+	(0, _psydux.render)((0, _container2.default)((0, _psydux.el)('h1', function () {
+	  return 'Todo List';
+	}), todoForm, (0, _psydux.el)('hr'), todoList));
 
 	todoInput.focus();
 
@@ -8688,6 +8652,129 @@
 
 	  document.body.insertBefore(root, document.body.firstChild);
 	};
+
+/***/ },
+/* 309 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _psydux = __webpack_require__(1);
+
+	exports.default = function () {
+	  for (var _len = arguments.length, elements = Array(_len), _key = 0; _key < _len; _key++) {
+	    elements[_key] = arguments[_key];
+	  }
+
+	  return (0, _psydux.el)('div', function () {
+	    return elements;
+	  }, { class: 'container-fluid' });
+	}; /**
+	    * Created by timur on 12/21/16.
+	    */
+
+/***/ },
+/* 310 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _psydux = __webpack_require__(1);
+
+	exports.default = function (placeholder) {
+	  return (0, _psydux.el)('input', { placeholder: placeholder, class: 'form-control' });
+	}; /**
+	    * Created by timur on 12/21/16.
+	    */
+
+/***/ },
+/* 311 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.col = exports.row = undefined;
+
+	var _psydux = __webpack_require__(1);
+
+	var row = exports.row = function row() {
+	  for (var _len = arguments.length, elements = Array(_len), _key = 0; _key < _len; _key++) {
+	    elements[_key] = arguments[_key];
+	  }
+
+	  return (0, _psydux.el)('div', function () {
+	    return elements;
+	  }, { class: 'row' });
+	}; /**
+	    * Created by timur on 12/21/16.
+	    */
+
+	var col = exports.col = function col(amount, display) {
+	  for (var _len2 = arguments.length, elements = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+	    elements[_key2 - 2] = arguments[_key2];
+	  }
+
+	  return (0, _psydux.el)('div', function () {
+	    return elements;
+	  }, { class: 'col-' + display + '-' + amount });
+	};
+
+/***/ },
+/* 312 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _psydux = __webpack_require__(1);
+
+	exports.default = function (_ref) {
+	  var type = _ref.type,
+	      text = _ref.text;
+	  return (0, _psydux.el)('button', function () {
+	    return text;
+	  }, { class: 'btn btn-' + type + ' btn-block' });
+	}; /**
+	    * Created by timur on 12/21/16.
+	    */
+
+/***/ },
+/* 313 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _psydux = __webpack_require__(1);
+
+	exports.default = function () {
+	  for (var _len = arguments.length, elements = Array(_len), _key = 0; _key < _len; _key++) {
+	    elements[_key] = arguments[_key];
+	  }
+
+	  return (0, _psydux.el)('form', function () {
+	    return elements;
+	  });
+	}; /**
+	    * Created by timur on 12/21/16.
+	    */
 
 /***/ }
 /******/ ]);

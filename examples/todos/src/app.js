@@ -1,18 +1,9 @@
 import { el, render } from 'psydux'
-
-const container = (...elements) => el('div', () => elements, { class: 'container-fluid' })
-
-const title = text => el('h1', () => text)
-
-const input = placeholder => el('input', { placeholder, class: 'form-control' })
-
-const form = (...elements) => el('form', () => elements)
-
-const row = (...elements) => el('div', () => elements, { class: 'row' })
-
-const col = (amount, display, ...elements) => el('div', () => elements, { class: `col-${display}-${amount}` })
-
-const button = ({ type, text }) => el('button', () => text, { class: `btn btn-${type} btn-block` })
+import container from './components/container'
+import input from './components/input'
+import { row, col } from './components/grid'
+import button from './components/button'
+import form from './components/form'
 
 const todoInput = input('Add Todo')
 
@@ -34,13 +25,13 @@ todoForm.onsubmit = e => {
 
   e.preventDefault()
 
-  if(todoInput.value === '') {
+  if (todoInput.value === '') {
     return
   }
 
   const todo = todoItem(todoInput.value)
 
-  todo.onclick = function() {
+  todo.onclick = function () {
     this.style.textDecoration = this.style.textDecoration === 'none' ? 'line-through' : 'none'
   }
 
@@ -51,7 +42,7 @@ todoForm.onsubmit = e => {
 
 render(
   container(
-    title('Todo List'),
+    el('h1', () => 'Todo List'),
     todoForm,
     el('hr'),
     todoList
