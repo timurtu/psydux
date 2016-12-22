@@ -8,14 +8,12 @@ import { el, render } from 'psydux'
 
 const style = 'margin: .25rem'
 
-const container = (...elements) => el('div', {
-  class: 'container'
-}, () => elements)
+const container = (...elements) => el('div', () => elements, { class: 'container' })
 
-const title = msg => el('h1', {
+const title = msg => el('h1', () => msg, {
   class: 'display-4',
   style
-}, () => msg)
+})
 
 const input = placeholder => el('input', {
   autoFocus: true,
@@ -24,19 +22,22 @@ const input = placeholder => el('input', {
   style
 })
 
-const button = ({type, text}) => el('button', () => text, { class: `btn btn-${type} btn-block`, style })
+const button = ({ type, text }) => el('button', () => text, { class: `btn btn-${type} btn-block`, style })
 
-const list = msgs => el('ul', { class: 'list-group' }, () => 
-  msgs.map(msg => el('li', () => msg, { class: 'list-group-item' })))
+const list = (...items) => el('ul', () => msgs.map(msg => 
+  el('li', () => msg, { class: 'list-group-item' })),
+{ class: 'list-group' })
 
 render(
   container(
     title('Todo list'),
     input('Add a new todo!'),
     button({type: 'primary', text: 'Add todo'}),
-    list(todos)
+    list('temporary', 'todo', 'items')
   )
 )
 ```
 
-Pass around style and class properties when necessary. 
+Pass around style and class properties when necessary.
+ 
+[Psydux State]() TODO

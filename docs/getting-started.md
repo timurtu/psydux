@@ -121,4 +121,4 @@ render(
 
 At this point you should be seeing a padded h1, input, and button all with corresponding text in your browser.
 
-[Next steps](next-steps.md)
+[Styling components](styling-components.md)
