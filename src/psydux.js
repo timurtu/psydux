@@ -3,6 +3,7 @@
  */
 
 import 'babel-polyfill'
+import 'domali'
 import el from './el'
 import state from './state'
 import render from './render'

@@ -48,8 +48,6 @@
 
 	var _psydux = __webpack_require__(1);
 
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 	var container = function container() {
 	  for (var _len = arguments.length, elements = Array(_len), _key = 0; _key < _len; _key++) {
 	    elements[_key] = arguments[_key];
@@ -106,30 +104,13 @@
 
 	var todoForm = form(row(col(8, 'xs', todoInput), col(4, 'xs', button({ type: 'success', text: 'Add' }))));
 
-	_psydux.state.set({
-	  todos: []
-	});
+	var todoList = (0, _psydux.el)('ul');
 
 	todoForm.onsubmit = function (e) {
-
 	  e.preventDefault();
-
-	  _psydux.state.set({
-	    todos: [].concat(_toConsumableArray(_psydux.state.get().todos), [todoInput.value])
-	  });
-
-	  console.log('todos', _psydux.state.get().todos);
-
+	  todoList.push(todoInput.value);
 	  todoInput.value = '';
 	};
-
-	var todoList = (0, _psydux.el)('ul', function () {
-	  return _psydux.state.get().todos.map(function (todo) {
-	    return (0, _psydux.el)('li', function () {
-	      return todo;
-	    });
-	  });
-	});
 
 	(0, _psydux.render)(container(title('Todo List'), todoForm, todoList));
 
@@ -8324,48 +8305,47 @@
 	  var tag = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
 	  var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 	  var attributes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-	  return function () {
 
-	    var node = document.createElement(tag);
 
-	    switch (typeof callback === 'undefined' ? 'undefined' : _typeof(callback)) {
+	  var node = document.createElement(tag);
 
-	      case 'function':
-	        {
+	  switch (typeof callback === 'undefined' ? 'undefined' : _typeof(callback)) {
 
-	          var returnValue = callback();
+	    case 'function':
+	      {
 
-	          switch (typeof returnValue === 'undefined' ? 'undefined' : _typeof(returnValue)) {
+	        var returnValue = callback();
 
-	            case 'object':
-	              {
-	                Array.isArray(returnValue) ? Array.prototype.forEach.call(returnValue, function (element) {
-	                  return node.appendChild(element);
-	                }) : node.appendChild(returnValue);
-	                break;
-	              }
+	        switch (typeof returnValue === 'undefined' ? 'undefined' : _typeof(returnValue)) {
 
-	            case 'string':
-	              {
-	                node.appendChild(document.createTextNode(returnValue));
-	                break;
-	              }
-	          }
-	          break;
+	          case 'object':
+	            {
+	              Array.isArray(returnValue) ? Array.prototype.forEach.call(returnValue, function (element) {
+	                return node.appendChild(element);
+	              }) : node.appendChild(returnValue);
+	              break;
+	            }
+
+	          case 'string':
+	            {
+	              node.appendChild(document.createTextNode(returnValue));
+	              break;
+	            }
 	        }
+	        break;
+	      }
 
-	      case 'object':
-	        {
-	          attributes = callback;
-	        }
-	    }
+	    case 'object':
+	      {
+	        attributes = callback;
+	      }
+	  }
 
-	    for (var a in attributes) {
-	      node.setAttribute(a, attributes[a]);
-	    }
+	  for (var a in attributes) {
+	    node.setAttribute(a, attributes[a]);
+	  }
 
-	    return node;
-	  };
+	  return node;
 	};
 
 /***/ },
@@ -8399,7 +8379,7 @@
 
 /***/ },
 /* 301 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	'use strict';
 
@@ -8407,48 +8387,36 @@
 	  value: true
 	});
 
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 	/**
 	 * Created by timur on 12/21/16.
 	 */
 
 	exports.default = function () {
-	  var _marked = [generator].map(regeneratorRuntime.mark);
-
 	  for (var _len = arguments.length, functions = Array(_len), _key = 0; _key < _len; _key++) {
 	    functions[_key] = arguments[_key];
 	  }
 
 	  var root = document.createElement('div');
 
-	  function generator(items) {
-	    return regeneratorRuntime.wrap(function generator$(_context) {
-	      while (1) {
-	        switch (_context.prev = _context.next) {
-	          case 0:
-	            if (false) {
-	              _context.next = 5;
-	              break;
-	            }
+	  functions.forEach(function (fn) {
 
-	            _context.next = 3;
-	            return items.forEach(function (item) {
-	              root.appendChild(item());
-	            });
+	    switch (typeof fn === 'undefined' ? 'undefined' : _typeof(fn)) {
 
-	          case 3:
-	            _context.next = 0;
-	            break;
-
-	          case 5:
-	          case 'end':
-	            return _context.stop();
+	      case 'function':
+	        {
+	          root.appendChild(fn());
+	          break;
 	        }
-	      }
-	    }, _marked[0], this);
-	  }
 
-	  var gen = generator(functions);
-	  gen.next();
+	      case 'object':
+	        {
+	          root.appendChild(fn);
+	          break;
+	        }
+	    }
+	  });
 
 	  document.body.insertBefore(root, document.body.firstChild);
 	};

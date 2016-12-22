@@ -17,30 +17,15 @@ const todoForm = form(
   )
 )
 
-state.set({
-  todos: []
-})
+const todoList = el('ul')
 
 todoForm.onsubmit = e => {
-
   e.preventDefault()
-
-  state.set({
-    todos: [
-      ...state.get().todos,
-      todoInput.value
-    ]
-  })
-
-  console.log('todos', state.get().todos)
-
+  todoList.push(todoInput.value)
   todoInput.value = ''
 }
 
-const todoList = el('ul', () => state.get().todos.map(todo => el('li', () => todo)))
-
 render(
-
   container(
     title('Todo List'),
     todoForm,
