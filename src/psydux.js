@@ -2,7 +2,6 @@
  * Created by timur on 8/31/16.
  */
 
-import 'babel-polyfill'
 import 'domali'
 import el from './el'
 import state from './state'
