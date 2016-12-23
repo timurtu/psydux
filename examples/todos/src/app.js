@@ -12,7 +12,7 @@ const input = placeholder => el('input', { placeholder, class: 'form-control' })
   col = (amount, display, ...elements) => div(() => elements, { class: `col-${display}-${amount}` }),
   title = text => el('h1', () => text),
   listGroup = () => div({ class: 'list-group' }),
-  listGroupItem = item => div(() => item, { class: 'list-group-item' }),
+  listGroupItem = item => div(() => item, { class: 'list-group-item', style: 'user-select: none;' }),
   todoInput = input('Add Todo'),
   todoList = listGroup(),
   todoForm = form(row(
@@ -30,7 +30,7 @@ todoForm.onsubmit = e => {
   const todo = listGroupItem(todoInput.value)
 
   todo.onclick = function () {
-    this.style.textDecoration = this.style.textDecoration === 'none' ? 'line-through' : 'none'
+    this.style.textDecoration = this.style.textDecoration !== 'line-through' ? 'line-through' : 'none'
   }
 
   todoList.unshift(todo)
