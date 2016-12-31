@@ -5,6 +5,7 @@
 export default (path, el) => {
 
   const dynamicRoutes = path.split(':')
+  const locationRoutes = location.pathname.split(':')
 
   switch(dynamicRoutes.length) {
 
@@ -16,8 +17,8 @@ export default (path, el) => {
     }
 
     case 2: {
-      if(dynamicRoutes[0] === location.pathname.split(':')[0]) {
-        return el(dynamicRoutes[1])
+      if(dynamicRoutes[0] === locationRoutes[0]) {
+        return el(locationRoutes[1])
       }
       break
     }

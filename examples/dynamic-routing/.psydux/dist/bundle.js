@@ -58,33 +58,40 @@
 	  }, { class: 'container' });
 	};
 
-	var link = function link(href) {
-	  return (0, _psydux.el)('a', function () {
-	    return href;
-	  }, { href: href, style: 'margin: .5em' });
-	};
+	var form = function form() {
+	  for (var _len2 = arguments.length, els = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+	    els[_key2] = arguments[_key2];
+	  }
 
-	var h1 = function h1(text) {
-	  return (0, _psydux.el)('h1', function () {
-	    return text;
+	  return (0, _psydux.el)('form', function () {
+	    return els;
 	  });
 	};
 
-	var p = function p(text) {
-	  return (0, _psydux.el)('p', function () {
-	    return text;
-	  });
+	var input = function input(placeholder) {
+	  return (0, _psydux.el)('input', { class: 'form-control', placeholder: placeholder });
 	};
 
-	var nav = container(link('/'), link('home'), link('profile'));
+	var button = function button(text) {
+	  return (0, _psydux.el)('button', function () {
+	    return text;
+	  }, { class: 'btn btn-default' });
+	};
 
-	var index = container(h1('Index'));
+	var userInput = input('Username...');
 
-	var home = container(h1('Home'), p('Home page text'));
+	var userForm = container(form(userInput, button('Find user')));
 
-	var profile = container(h1('Profile'), p('Profile page text'));
+	userForm.onsubmit = function (e) {
+	  e.preventDefault();
+	};
 
-	(0, _psydux.render)(nav, (0, _psydux.route)('/', index), (0, _psydux.route)('/home', home), (0, _psydux.route)('/profile', profile));
+	(0, _psydux.render)(
+	// userForm,
+	(0, _psydux.route)('/:foo', function (foo) {
+	  console.log(foo);
+	  return button(foo);
+	}));
 
 /***/ },
 /* 1 */
