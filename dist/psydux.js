@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.render = exports.state = exports.el = undefined;
+exports.route = exports.render = exports.state = exports.el = undefined;
 
 require('domali');
 
@@ -19,12 +19,15 @@ var _render = require('./render');
 
 var _render2 = _interopRequireDefault(_render);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _route = require('./route');
 
-/**
- * Created by timur on 8/31/16.
- */
+var _route2 = _interopRequireDefault(_route);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.el = _el2.default;
 exports.state = _state2.default;
 exports.render = _render2.default;
+exports.route = _route2.default; /**
+                                  * Created by timur on 8/31/16.
+                                  */
