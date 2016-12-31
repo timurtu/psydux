@@ -48,27 +48,43 @@
 
 	var _psydux = __webpack_require__(1);
 
+	var container = function container() {
+	  for (var _len = arguments.length, els = Array(_len), _key = 0; _key < _len; _key++) {
+	    els[_key] = arguments[_key];
+	  }
+
+	  return (0, _psydux.el)('div', function () {
+	    return els;
+	  }, { class: 'container' });
+	};
+
+	var link = function link(href) {
+	  return (0, _psydux.el)('a', function () {
+	    return href;
+	  }, { href: href, style: 'margin: .5em' });
+	};
+
 	var h1 = function h1(text) {
 	  return (0, _psydux.el)('h1', function () {
 	    return text;
 	  });
 	};
 
-	var links = function links() {
-	  for (var _len = arguments.length, _links = Array(_len), _key = 0; _key < _len; _key++) {
-	    _links[_key] = arguments[_key];
-	  }
-
-	  return (0, _psydux.el)('div', function () {
-	    return _links.map(function (link) {
-	      return (0, _psydux.el)('a', function () {
-	        return link;
-	      }, { href: '/' + link, class: 'list-group-item' });
-	    });
-	  }, { class: 'list-group' });
+	var p = function p(text) {
+	  return (0, _psydux.el)('p', function () {
+	    return text;
+	  });
 	};
 
-	(0, _psydux.render)(links('foo', 'bar'), (0, _psydux.route)('/foo', h1('foo')), (0, _psydux.route)('/bar', h1('bar')));
+	var nav = container(link('/'), link('home'), link('profile'));
+
+	var index = container(h1('Index'));
+
+	var home = container(h1('Home'), p('Home page text'));
+
+	var profile = container(h1('Profile'), p('Profile page text'));
+
+	(0, _psydux.render)(nav, (0, _psydux.route)('/', index), (0, _psydux.route)('/home', home), (0, _psydux.route)('/profile', profile));
 
 /***/ },
 /* 1 */
@@ -79,7 +95,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.render = exports.state = exports.el = undefined;
+	exports.route = exports.render = exports.state = exports.el = undefined;
 
 	__webpack_require__(2);
 
@@ -95,15 +111,18 @@
 
 	var _render2 = _interopRequireDefault(_render);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	var _route = __webpack_require__(12);
 
-	/**
-	 * Created by timur on 8/31/16.
-	 */
+	var _route2 = _interopRequireDefault(_route);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.el = _el2.default;
 	exports.state = _state2.default;
 	exports.render = _render2.default;
+	exports.route = _route2.default; /**
+	                                  * Created by timur on 8/31/16.
+	                                  */
 
 /***/ },
 /* 2 */
@@ -473,6 +492,27 @@
 	  });
 
 	  document.body.insertBefore(root, document.body.firstChild);
+	};
+
+/***/ },
+/* 12 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	/**
+	 * Created by timur on 12/28/16.
+	 */
+
+	exports.default = function (path, element) {
+
+	  if (location.pathname === path) {
+	    return element;
+	  }
 	};
 
 /***/ }
