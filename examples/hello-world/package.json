@@ -16,6 +16,7 @@
     "babel-preset-es2016": "^6.16.0",
     "css-loader": "^0.26.1",
     "file-loader": "^0.9.0",
+    "lite-server": "^2.2.2",
     "node-sass": "^4.1.1",
     "psydux": "^2.2.1",
     "sass-loader": "^4.1.1",
