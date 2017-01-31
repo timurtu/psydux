@@ -4,21 +4,49 @@ function div() {
   return el('div', ...arguments)
 }
 
-const input = placeholder => el('input', { placeholder, class: 'form-control' }),
-  form = (...elements) => el('form', () => elements),
-  container = (...elements) => div(() => elements, { class: 'container-fluid' }),
-  button = ({ type, text }) => el('button', () => text, { class: `btn btn-${type} btn-block` }),
-  row = (...elements) => div(() => elements, { class: 'row' }),
-  col = (amount, display, ...elements) => div(() => elements, { class: `col-${display}-${amount}` }),
-  title = text => el('h1', () => text),
-  listGroup = () => div({ class: 'list-group' }),
-  listGroupItem = item => div(() => item, { class: 'list-group-item', style: 'user-select: none;' }),
-  todoInput = input('Add Todo'),
-  todoList = listGroup(),
-  todoForm = form(row(
+const input = placeholder => el('input', {
+  placeholder, class: 'form-control'
+})
+
+const form = (...elements) => el('form', () => elements)
+
+const container = (...elements) => div(() => elements, {
+  class: 'container-fluid'
+})
+
+const button = ({ type, text }) => el('button', () => text, {
+  class: `btn btn-${type} btn-block`
+})
+
+const row = (...elements) => div(() => elements, {
+  class: 'row'
+})
+
+const col = (amount, display, ...elements) => div(() => elements, {
+  class: `col-${display}-${amount}`
+})
+
+const title = text => el('h1', () => text)
+
+const listGroup = () => div({
+  class: 'list-group'
+})
+
+const listGroupItem = item => div(() => item, {
+  class: 'list-group-item',
+  style: 'user-select: none;'
+})
+
+const todoInput = input('Add Todo')
+
+const todoList = listGroup()
+
+const todoForm = form(
+  row(
     col(8, 'xs', todoInput),
     col(4, 'xs', button({ type: 'success', text: 'Add' }))
-  ))
+  )
+)
 
 todoForm.onsubmit = e => {
   e.preventDefault()
@@ -30,18 +58,22 @@ todoForm.onsubmit = e => {
   const todo = listGroupItem(todoInput.value)
 
   todo.onclick = function () {
-    this.style.textDecoration = this.style.textDecoration !== 'line-through' ? 'line-through' : 'none'
+    this.style.textDecoration = this.style.textDecoration === 'none' ?
+      'none' :
+      'line-through'
   }
 
   todoList.unshift(todo)
   todoInput.value = ''
 }
 
-render(container(
-  title('Todo list'),
-  todoForm,
-  el('hr'),
-  todoList
-))
+render(
+  container(
+    title('Todo list'),
+    todoForm,
+    el('hr'),
+    todoList
+  )
+)
 
 todoInput.focus()

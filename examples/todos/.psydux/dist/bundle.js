@@ -53,9 +53,12 @@
 	}
 
 	var input = function input(placeholder) {
-	  return (0, _psydux.el)('input', { placeholder: placeholder, class: 'form-control' });
-	},
-	    form = function form() {
+	  return (0, _psydux.el)('input', {
+	    placeholder: placeholder, class: 'form-control'
+	  });
+	};
+
+	var form = function form() {
 	  for (var _len = arguments.length, elements = Array(_len), _key = 0; _key < _len; _key++) {
 	    elements[_key] = arguments[_key];
 	  }
@@ -63,57 +66,80 @@
 	  return (0, _psydux.el)('form', function () {
 	    return elements;
 	  });
-	},
-	    container = function container() {
+	};
+
+	var container = function container() {
 	  for (var _len2 = arguments.length, elements = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
 	    elements[_key2] = arguments[_key2];
 	  }
 
 	  return div(function () {
 	    return elements;
-	  }, { class: 'container-fluid' });
-	},
-	    button = function button(_ref) {
+	  }, {
+	    class: 'container-fluid'
+	  });
+	};
+
+	var button = function button(_ref) {
 	  var type = _ref.type,
 	      text = _ref.text;
 	  return (0, _psydux.el)('button', function () {
 	    return text;
-	  }, { class: 'btn btn-' + type + ' btn-block' });
-	},
-	    row = function row() {
+	  }, {
+	    class: 'btn btn-' + type + ' btn-block'
+	  });
+	};
+
+	var row = function row() {
 	  for (var _len3 = arguments.length, elements = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
 	    elements[_key3] = arguments[_key3];
 	  }
 
 	  return div(function () {
 	    return elements;
-	  }, { class: 'row' });
-	},
-	    col = function col(amount, display) {
+	  }, {
+	    class: 'row'
+	  });
+	};
+
+	var col = function col(amount, display) {
 	  for (var _len4 = arguments.length, elements = Array(_len4 > 2 ? _len4 - 2 : 0), _key4 = 2; _key4 < _len4; _key4++) {
 	    elements[_key4 - 2] = arguments[_key4];
 	  }
 
 	  return div(function () {
 	    return elements;
-	  }, { class: 'col-' + display + '-' + amount });
-	},
-	    title = function title(text) {
+	  }, {
+	    class: 'col-' + display + '-' + amount
+	  });
+	};
+
+	var title = function title(text) {
 	  return (0, _psydux.el)('h1', function () {
 	    return text;
 	  });
-	},
-	    listGroup = function listGroup() {
-	  return div({ class: 'list-group' });
-	},
-	    listGroupItem = function listGroupItem(item) {
+	};
+
+	var listGroup = function listGroup() {
+	  return div({
+	    class: 'list-group'
+	  });
+	};
+
+	var listGroupItem = function listGroupItem(item) {
 	  return div(function () {
 	    return item;
-	  }, { class: 'list-group-item', style: 'user-select: none;' });
-	},
-	    todoInput = input('Add Todo'),
-	    todoList = listGroup(),
-	    todoForm = form(row(col(8, 'xs', todoInput), col(4, 'xs', button({ type: 'success', text: 'Add' }))));
+	  }, {
+	    class: 'list-group-item',
+	    style: 'user-select: none;'
+	  });
+	};
+
+	var todoInput = input('Add Todo');
+
+	var todoList = listGroup();
+
+	var todoForm = form(row(col(8, 'xs', todoInput), col(4, 'xs', button({ type: 'success', text: 'Add' }))));
 
 	todoForm.onsubmit = function (e) {
 	  e.preventDefault();
@@ -125,7 +151,7 @@
 	  var todo = listGroupItem(todoInput.value);
 
 	  todo.onclick = function () {
-	    this.style.textDecoration = this.style.textDecoration !== 'line-through' ? 'line-through' : 'none';
+	    this.style.textDecoration = this.style.textDecoration === 'none' ? 'none' : 'line-through';
 	  };
 
 	  todoList.unshift(todo);
@@ -145,7 +171,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.render = exports.state = exports.el = undefined;
+	exports.route = exports.render = exports.state = exports.el = undefined;
 
 	__webpack_require__(2);
 
@@ -161,15 +187,18 @@
 
 	var _render2 = _interopRequireDefault(_render);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	var _route = __webpack_require__(12);
 
-	/**
-	 * Created by timur on 8/31/16.
-	 */
+	var _route2 = _interopRequireDefault(_route);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.el = _el2.default;
 	exports.state = _state2.default;
 	exports.render = _render2.default;
+	exports.route = _route2.default; /**
+	                                  * Created by timur on 8/31/16.
+	                                  */
 
 /***/ },
 /* 2 */
@@ -539,6 +568,45 @@
 	  });
 
 	  document.body.insertBefore(root, document.body.firstChild);
+	};
+
+/***/ },
+/* 12 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	/**
+	 * Created by timur on 12/28/16.
+	 */
+
+	exports.default = function (path, el) {
+
+	  var dynamicRoutes = path.split(':');
+	  var locationRoutes = location.pathname.split(':');
+
+	  switch (dynamicRoutes.length) {
+
+	    case 1:
+	      {
+	        if (location.pathname === path) {
+	          return el;
+	        }
+	        break;
+	      }
+
+	    case 2:
+	      {
+	        if (dynamicRoutes[0] === locationRoutes[0]) {
+	          return el(locationRoutes[1]);
+	        }
+	        break;
+	      }
+	  }
 	};
 
 /***/ }

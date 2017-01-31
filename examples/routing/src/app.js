@@ -1,8 +1,13 @@
 import { el, render, route } from 'psydux'
 
-const container = (...els) => el('div', () => els, { class: 'container' })
+const container = (...els) => el('div', () => els, {
+  class: 'container'
+})
 
-const link = href => el('a', () => href, { href, style: 'margin: .5em' })
+const link = href => el('a', () => href, {
+  href,
+  style: 'margin: .5em'
+})
 
 const h1 = text => el('h1', () => text)
 
@@ -14,7 +19,9 @@ const nav = container(
   link('profile')
 )
 
-const index = container(h1('Index'))
+const index = container(
+  h1('Index')
+)
 
 const home = container(
   h1('Home'),
