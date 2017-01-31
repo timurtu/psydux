@@ -48,9 +48,7 @@
 
 	__webpack_require__(1);
 
-	__webpack_require__(14);
-
-	__webpack_require__(15);
+	__webpack_require__(13);
 
 /***/ },
 /* 1 */
@@ -153,7 +151,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.route = exports.render = exports.state = exports.el = undefined;
+	exports.route = exports.render = exports.el = undefined;
 
 	__webpack_require__(3);
 
@@ -161,26 +159,23 @@
 
 	var _el2 = _interopRequireDefault(_el);
 
-	var _state = __webpack_require__(11);
-
-	var _state2 = _interopRequireDefault(_state);
-
-	var _render = __webpack_require__(12);
+	var _render = __webpack_require__(11);
 
 	var _render2 = _interopRequireDefault(_render);
 
-	var _route = __webpack_require__(13);
+	var _route = __webpack_require__(12);
 
 	var _route2 = _interopRequireDefault(_route);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	/**
+	 * Created by timur on 8/31/16.
+	 */
+
 	exports.el = _el2.default;
-	exports.state = _state2.default;
 	exports.render = _render2.default;
-	exports.route = _route2.default; /**
-	                                  * Created by timur on 8/31/16.
-	                                  */
+	exports.route = _route2.default;
 
 /***/ },
 /* 3 */
@@ -483,35 +478,6 @@
 /* 11 */
 /***/ function(module, exports) {
 
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	/**
-	 * Created by timur on 12/19/2016.
-	 */
-
-	var states = [{}];
-	var count = 0;
-
-	function get() {
-	  return states[count];
-	}
-
-	function set(nextState) {
-	  states.push(nextState);
-	  count++;
-	}
-
-	exports.default = {
-	  get: get, set: set
-	};
-
-/***/ },
-/* 12 */
-/***/ function(module, exports) {
-
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
@@ -553,7 +519,7 @@
 	};
 
 /***/ },
-/* 13 */
+/* 12 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -592,46 +558,7 @@
 	};
 
 /***/ },
-/* 14 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _psydux = __webpack_require__(2);
-
-	describe('state', function () {
-
-	  describe('get', function () {
-
-	    it('should return an object', function () {
-	      expect(_psydux.state.get()).to.be.an('object');
-	    });
-
-	    it('should be empty without setting state', function () {
-	      expect(_psydux.state.get()).to.be.empty;
-	    });
-	  });
-
-	  describe('set', function () {
-
-	    it('should set a value', function () {
-	      _psydux.state.set({ name: 'Timur' });
-	      expect(_psydux.state.get()).to.deep.equal({ name: 'Timur' });
-	    });
-
-	    it('should set a new value', function () {
-	      _psydux.state.set({ name: 'Timur' });
-	      expect(_psydux.state.get()).to.deep.equal({ name: 'Timur' });
-	      _psydux.state.set({ name: 'Uzel' });
-	      expect(_psydux.state.get()).to.deep.equal({ name: 'Uzel' });
-	    });
-	  });
-	}); /**
-	     * Created by timur on 12/19/2016.
-	     */
-
-/***/ },
-/* 15 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
