@@ -8,6 +8,8 @@ A functional JavaScript Framework for building user interfaces
 
 - __DRY and Reusable__ - Psydux apps do not contain one line of HTML
 
+[Create and develop apps with the psydux cli](https://github.com/timurtu/psydux-cli)
+
 [Get started with Psydux](docs/getting-started.md)
 
 ## Install
